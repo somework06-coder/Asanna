@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html class="light" lang="id">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Asanna Village - Website Hunian Resmi</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#A0724F",
+                        "cta": "#5A260B",
+                        "background-light": "#F4EFE7",
+                        "background-dark": "#32160A",
+                        "surface-dark": "#3E2B22",
+                        "forest": "#5A260B",
+                        "sand": "#F4EFE7",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    backgroundImage: {
+                        'hero-pattern': "linear-gradient(to bottom, rgba(16, 34, 16, 0.4), rgba(16, 34, 16, 0.6))",
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+
+<body
+    class="font-display bg-background-light dark:bg-background-dark text-[#32160A] dark:text-[#E8E6DF] overflow-x-hidden antialiased">
+    <div class="relative flex min-h-screen w-full flex-col">
+        <header
+            class="sticky top-0 z-50 w-full border-b border-solid border-[#f0f4f0] dark:border-gray-800 bg-white/95 dark:bg-background-dark/95 backdrop-blur-md px-6 lg:px-10 py-2 transition-colors">
+            <div class="mx-auto flex max-w-[1280px] items-center justify-between whitespace-nowrap">
+                <div class="flex items-center gap-4">
+                    <a class="flex items-center gap-4" href="#home">
+                        <img src="images/ASSETS/LOGO%20ASANNA%20PNG.png" alt="Asanna Village Logo"
+                            class="h-20 md:h-28 w-auto -my-4 md:-my-6 scale-125 object-contain origin-left" />
+                    </a>
+                </div>
+                <div class="hidden md:flex flex-1 justify-end gap-8">
+                    <div class="flex items-center gap-8">
+                        <a class="text-sm font-semibold leading-normal hover:text-primary transition-colors dark:text-gray-300 dark:hover:text-primary"
+                            href="#home">Home</a>
+                        <a class="text-sm font-semibold leading-normal hover:text-primary transition-colors dark:text-gray-300 dark:hover:text-primary"
+                            href="#essence">The Essence</a>
+                        <a class="text-sm font-semibold leading-normal hover:text-primary transition-colors dark:text-gray-300 dark:hover:text-primary"
+                            href="#living">Living Options</a>
+                        <a class="text-sm font-semibold leading-normal hover:text-primary transition-colors dark:text-gray-300 dark:hover:text-primary"
+                            href="#features">Features</a>
+                        <a class="text-sm font-semibold leading-normal hover:text-primary transition-colors dark:text-gray-300 dark:hover:text-primary"
+                            href="#location">Location</a>
+                    </div>
+                    <a class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-6 bg-cta text-white text-sm font-bold leading-normal tracking-wide hover:bg-cta/90 transition-all shadow-md"
+                        href="#contact">
+                        Hubungi Kami
+                    </a>
+                </div>
+                <div class="md:hidden">
+                    <span class="material-symbols-outlined text-3xl dark:text-white">menu</span>
+                </div>
+            </div>
+        </header>
+        <main class="flex-1 w-full">
+            <section class="relative h-[90vh] min-h-[600px] flex items-center justify-center overflow-hidden" id="home">
+                <div class="absolute inset-0 bg-cover bg-center"
+                    style="background-image: url('images/ASSETS/HEROIMage.jpg');">
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80"></div>
+                <div class="relative z-10 container mx-auto px-6 lg:px-10 text-center text-white">
+                    <span
+                        class="inline-block py-1 px-3 rounded-full bg-black/40 backdrop-blur-md border border-white/20 text-xs font-bold tracking-wider uppercase mb-6 animate-fade-in-up shadow-sm">Welcome
+                        to Asanna</span>
+                    <h1 class="text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6 leading-tight max-w-4xl mx-auto"
+                        style="text-shadow: 0 4px 8px rgba(0,0,0,0.8);">
+                        The Essence of <span
+                            style="text-shadow: 0 0 20px rgba(255,255,255,0.7), 0 4px 8px rgba(0,0,0,0.8);">Modern
+                            Living</span>
+                    </h1>
+                    <p
+                        class="text-lg md:text-xl text-gray-100 max-w-2xl mx-auto mb-10 leading-relaxed font-medium drop-shadow-lg">
+                        Rasakan harmoni sempurna antara estetika modern dan ketenangan alam tropis. Asanna Village
+                        menghadirkan hunian <span class="italic">Tropical Modern</span> yang dirancang untuk kenyamanan
+                        maksimal dan gaya hidup berkelas.
+                    </p>
+                    <div class="flex flex-row gap-3 justify-center items-center flex-wrap sm:flex-nowrap">
+                        <a class="w-auto px-5 py-3 lg:px-8 lg:py-4 bg-cta text-white text-xs sm:text-sm lg:text-base font-bold rounded-lg hover:bg-cta/90 transition-all shadow-lg shadow-cta/30 text-center whitespace-nowrap"
+                            href="#living">
+                            Lihat Hunian
+                        </a>
+                        <a class="w-auto px-5 py-3 lg:px-8 lg:py-4 bg-white/10 backdrop-blur-md border border-white/30 text-white text-xs sm:text-sm lg:text-base font-bold rounded-lg hover:bg-white/20 transition-all text-center whitespace-nowrap"
+                            href="#essence">
+                            Pelajari Lebih Lanjut
+                        </a>
+                    </div>
+                </div>
+                <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
+                    <a class="text-white opacity-70 hover:opacity-100 transition-opacity" href="#essence">
+                        <span class="material-symbols-outlined text-4xl">keyboard_arrow_down</span>
+                    </a>
+                </div>
+            </section>
+            <section class="py-20 lg:py-32 bg-white dark:bg-background-dark" id="essence">
+                <div class="container mx-auto px-6 lg:px-10 max-w-[1280px]">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                        <div class="relative group">
+                            <div
+                                class="absolute -inset-4 bg-primary/20 rounded-2xl transform rotate-2 transition-transform group-hover:rotate-1">
+                            </div>
+                            <img alt="Keluarga berjalan di taman"
+                                class="relative rounded-2xl shadow-2xl w-full object-cover h-[500px]"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4tAwZ4tdGHo-rupjfGokLK83VMHRH9GbNKFahTlDLSitXJmair3vbHlTeQb1hen-3ag2Fnx5WKib8QjsVlIQkPXttnk_i2Q76BdP15VxwwWAzqywNbT77PDbJ3M2eYM7vQ6PUXwBKR7qCCW-irovHzXMeCTu9mYifcgv20gBRW47gt2-pbalquQvnXz6v_DDtPdQpYo-oGHb07qQpXNsij1Evo_KtiIfwkfyBzcKr1Q-2V9d-V3fioyBaTZbDxkG2mKBUahDBieM" />
+                            <div
+                                class="absolute bottom-8 right-8 bg-white dark:bg-gray-900 p-6 rounded-xl shadow-lg max-w-[200px] border-l-4 border-primary">
+                                <p class="text-4xl font-bold text-primary mb-1">40%</p>
+                                <p class="text-sm font-semibold text-gray-600 dark:text-gray-300">Ruang Terbuka Hijau
+                                </p>
+                            </div>
+                        </div>
+                        <div class="space-y-8">
+                            <div>
+                                <h2 class="text-primary font-bold tracking-wider uppercase mb-3 text-sm">Our Philosophy
+                                </h2>
+                                <h3 class="text-3xl lg:text-5xl font-bold leading-tight mb-6 dark:text-white">Designed
+                                    for Life,<br />Rooted in Nature.</h3>
+                                <p class="text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
+                                    Lebih dari sekadar tempat tinggal, Asanna adalah oase pribadi Anda. Mengusung konsep
+                                    <span class="italic">Tropical Modern</span>, setiap sudut dirancang untuk
+                                    mengalirkan
+                                    udara segar dan cahaya alami, menyatukan interior elegan dengan kehijauan di luar.
+                                </p>
+                            </div>
+                            <div class="space-y-4">
+                                <div class="flex gap-4">
+                                    <span
+                                        class="flex-shrink-0 flex items-center justify-center size-10 rounded-full bg-primary/10 text-primary">
+                                        <span class="material-symbols-outlined">eco</span>
+                                    </span>
+                                    <div>
+                                        <h4 class="font-bold text-lg dark:text-white">Desain Berkelanjutan</h4>
+                                        <p class="text-gray-500 dark:text-gray-400">Rumah siap panel surya dengan
+                                            material ramah lingkungan.</p>
+                                    </div>
+                                </div>
+                                <div class="flex gap-4">
+                                    <span
+                                        class="flex-shrink-0 flex items-center justify-center size-10 rounded-full bg-primary/10 text-primary">
+                                        <span class="material-symbols-outlined">diversity_3</span>
+                                    </span>
+                                    <div>
+                                        <h4 class="font-bold text-lg dark:text-white">Komunitas Utama</h4>
+                                        <p class="text-gray-500 dark:text-gray-400">Ruang bersama yang dirancang untuk
+                                            membina koneksi dan kebersamaan.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section
+                class="py-20 lg:py-32 bg-background-light dark:bg-[#0c1a0c] border-t border-[#e5e7eb] dark:border-gray-800"
+                id="living">
+                <div class="container mx-auto px-6 lg:px-10 max-w-[1280px]">
+                    <div class="text-center max-w-3xl mx-auto mb-16">
+                        <span class="text-primary font-bold tracking-wider uppercase text-sm">Living Options</span>
+                        <h2 class="text-3xl lg:text-4xl font-bold mt-2 mb-4 dark:text-white">Discover Your Perfect
+                            Sanctuary
+                        </h2>
+                        <p class="text-gray-600 dark:text-gray-400">Desain arsitektur yang memukau dengan sentuhan batu
+                            alam, kayu, dan kaca lebar. Rumah yang bernapas dan tumbuh bersama impian keluarga Anda.</p>
+                    </div>
+                    <div class="flex flex-col gap-24">
+                        <!-- Collection 1: 2 Lantai -->
+                        <div class="relative">
+                            <!-- Large Header Image -->
+                            <div class="relative w-full rounded-3xl overflow-hidden shadow-xl group">
+                                <img src="images/ASSETS/ASANNA_2%20Lantai.jpg" alt="Pilihan 2 Lantai"
+                                    class="w-full h-auto object-contain" />
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none">
+                                </div>
+                                <div class="absolute top-3 left-3 lg:top-6 lg:left-6">
+                                    <span
+                                        class="bg-gradient-to-r from-[#dcdcdc] via-[#ffffff] to-[#dcdcdc] text-[#4a4a4a] border border-white/80 shadow-[0_0_20px_rgba(255,255,255,0.6)] px-3 py-1 lg:px-6 lg:py-2 rounded-full font-extrabold text-[10px] lg:text-sm tracking-widest uppercase backdrop-blur-sm">
+                                        PILIHAN 2 LANTAI
+                                    </span>
+                                </div>
+                            </div>
+
+                            <!-- Floating Unit Cards -->
+                            <!-- Floating Unit Cards Container (2 Lantai) -->
+                            <div id="container-2-lantai"
+                                class="grid grid-cols-2 gap-3 lg:gap-6 -mt-16 md:-mt-24 lg:-mt-32 px-2 lg:px-16 relative z-20">
+                                <!-- Cards will be rendered here by js/app.js -->
+                            </div>
+                        </div>
+
+                        <!-- Collection 2: 3 Lantai -->
+                        <div class="relative">
+                            <!-- Large Header Image -->
+                            <div class="relative w-full rounded-3xl overflow-hidden shadow-xl group">
+                                <img src="images/ASSETS/ASANNA_3%20Lantai.jpg" alt="Pilihan 3 Lantai"
+                                    class="w-full h-auto object-contain" />
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none">
+                                </div>
+                                <div class="absolute top-3 left-3 lg:top-6 lg:left-6">
+                                    <span
+                                        class="bg-gradient-to-r from-[#dcdcdc] via-[#ffffff] to-[#dcdcdc] text-[#4a4a4a] border border-white/80 shadow-[0_0_20px_rgba(255,255,255,0.6)] px-3 py-1 lg:px-6 lg:py-2 rounded-full font-extrabold text-[10px] lg:text-sm tracking-widest uppercase backdrop-blur-sm">
+                                        PILIHAN 3 LANTAI
+                                    </span>
+                                </div>
+                            </div>
+
+                            <!-- Floating Unit Cards -->
+                            <!-- Floating Unit Cards Container (3 Lantai) -->
+                            <div id="container-3-lantai"
+                                class="grid grid-cols-2 gap-3 lg:gap-6 -mt-16 md:-mt-24 lg:-mt-32 px-2 lg:px-16 relative z-20">
+                                <!-- Cards will be rendered here by js/app.js -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section id="features" class="py-20 lg:py-32 bg-white dark:bg-background-dark overflow-hidden">
+                <div class="container mx-auto px-6 lg:px-10 max-w-[1280px]">
+                    <!-- Intro -->
+                    <div class="text-center mb-16 lg:mb-24">
+                        <span class="text-primary font-bold tracking-wider uppercase text-sm">World Class
+                            Amenities</span>
+                        <h2 class="text-3xl lg:text-5xl font-extrabold mt-3 mb-6 dark:text-white">Curated for <span
+                                class="italic font-serif text-[#a0724f]">Lifestyle</span></h2>
+                        <p class="text-gray-600 dark:text-gray-300 text-lg max-w-2xl mx-auto leading-relaxed">
+                            Setiap sudut dirancang untuk estetika dan fungsi, menciptakan lingkungan yang mendukung
+                            kesehatan dan ketenangan Anda.
+                        </p>
+                    </div>
+
+                    <div class="space-y-24 lg:space-y-32">
+                        <!-- Item 1: Gate (Image Left, Text Right) -->
+                        <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-20 group">
+                            <div class="w-full lg:w-1/2 relative">
+                                <div
+                                    class="absolute inset-0 bg-[#a0724f]/10 rounded-3xl transform rotate-3 transition-transform duration-500 group-hover:rotate-6">
+                                </div>
+                                <img src="images/ASSETS/Gate/ASANNA_Gate_1_Edit 1.png" alt="Asanna Main Gate"
+                                    class="relative w-full h-[300px] lg:h-[450px] object-cover rounded-3xl shadow-2xl z-10 transition-transform duration-500 group-hover:-translate-y-2" />
+                            </div>
+                            <div class="w-full lg:w-1/2">
+                                <div class="space-y-6">
+                                    <div
+                                        class="size-16 rounded-2xl bg-[#f4efe7] text-[#a0724f] flex items-center justify-center mb-6">
+                                        <span class="material-symbols-outlined text-3xl">security</span>
+                                    </div>
+                                    <h3 class="text-3xl lg:text-4xl font-bold dark:text-white">One Gate System & Iconic
+                                        Entrance</h3>
+                                    <p class="text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
+                                        Disambut dengan kemegahan setiap kali Anda pulang. Gerbang utama Asanna didesain
+                                        megah dengan pengamanan 24 jam dan sistem kartu akses, menjamin privasi dan
+                                        keamanan eksklusif bagi seluruh penghuni.
+                                    </p>
+                                    <ul class="space-y-3 mt-4">
+                                        <li
+                                            class="flex items-center gap-3 text-gray-600 dark:text-gray-300 font-medium">
+                                            <span class="material-symbols-outlined text-[#a0724f]">check_circle</span>
+                                            24/7 Security Patrol
+                                        </li>
+                                        <li
+                                            class="flex items-center gap-3 text-gray-600 dark:text-gray-300 font-medium">
+                                            <span class="material-symbols-outlined text-[#a0724f]">check_circle</span>
+                                            RFID Access Card
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Item 2: Club House (Text Left, Image Right) -->
+                        <div class="flex flex-col-reverse lg:flex-row items-center gap-12 lg:gap-20 group">
+                            <div class="w-full lg:w-1/2">
+                                <div class="space-y-6">
+                                    <div
+                                        class="size-16 rounded-2xl bg-[#f4efe7] text-[#a0724f] flex items-center justify-center mb-6">
+                                        <span class="material-symbols-outlined text-3xl">fitness_center</span>
+                                    </div>
+                                    <h3 class="text-3xl lg:text-4xl font-bold dark:text-white">Exclusive Clubhouse &
+                                        Sport Center</h3>
+                                    <p class="text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
+                                        Fasilitas Internal Club House Asanna Village di rancang dengan konsep tropical
+                                        modern. Club House yang di dalamnya juga terdapat Swimming Pool ini bisa di
+                                        manfaatkan oleh penghuni Asanna Village sebagai tempat berinteraksi dengan
+                                        penghuni lainnya, sehingga terciptanya lingkungan yang harmonis.
+                                    </p>
+                                    <ul class="space-y-3 mt-4">
+                                        <li
+                                            class="flex items-center gap-3 text-gray-600 dark:text-gray-300 font-medium">
+                                            <span class="material-symbols-outlined text-[#a0724f]">check_circle</span>
+                                            Infinity Pool
+                                        </li>
+                                        <li
+                                            class="flex items-center gap-3 text-gray-600 dark:text-gray-300 font-medium">
+                                            <span class="material-symbols-outlined text-[#a0724f]">check_circle</span>
+                                            Modern Gym Equipment
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- Bento Grid Images (No Animation, Clear Visibility) -->
+                            <div class="w-full lg:w-1/2 flex flex-col gap-4">
+                                <!-- Image 1: Club House Exterior -->
+                                <div
+                                    class="relative w-full h-[250px] group overflow-hidden rounded-2xl shadow-lg border border-white/50">
+                                    <div
+                                        class="absolute inset-0 bg-[#a0724f]/0 group-hover:bg-[#a0724f]/10 transition-colors duration-500">
+                                    </div>
+                                    <img src="images/ASSETS/Fasilitas/ASANNA_Club%20House_1.jpg"
+                                        alt="Club House Exterior"
+                                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                                    <div
+                                        class="absolute bottom-3 left-3 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-lg shadow-sm">
+                                        <p class="text-[10px] font-bold text-[#5a260b] uppercase tracking-wide">Exterior
+                                            View</p>
+                                    </div>
+                                </div>
+
+                                <!-- Image 2: Infinity Pool -->
+                                <div
+                                    class="relative w-full h-[250px] group overflow-hidden rounded-2xl shadow-lg border border-white/50">
+                                    <div
+                                        class="absolute inset-0 bg-[#a0724f]/0 group-hover:bg-[#a0724f]/10 transition-colors duration-500">
+                                    </div>
+                                    <img src="images/ASSETS/Fasilitas/ASANNA_Club%20House_2_Edit%201.png"
+                                        alt="Infinity Pool"
+                                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                                    <div
+                                        class="absolute bottom-3 left-3 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-lg shadow-sm">
+                                        <p class="text-[10px] font-bold text-[#5a260b] uppercase tracking-wide">Infinity
+                                            Pool</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section id="location"
+                class="flex flex-col bg-background-light dark:bg-[#0c1a0c] border-t border-[#f0f4f0] dark:border-gray-800">
+                <div class="px-6 lg:px-40 flex flex-1 justify-center py-12 lg:py-20">
+                    <div class="layout-content-container flex flex-col max-w-[1200px] flex-1">
+                        <div class="mb-10 text-center lg:text-left">
+                            <span class="text-primary font-bold tracking-wider uppercase text-sm">Location</span>
+                            <h2
+                                class="text-[28px] lg:text-[32px] font-bold leading-tight tracking-[-0.015em] mt-2 dark:text-white">
+                                Prime Connectivity</h2>
+                            <p class="mt-2 text-gray-500 dark:text-gray-400 text-lg">Terhubung secara strategis ke
+                                segala hal
+                                yang penting.</p>
+                        </div>
+                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+                            <div class="lg:col-span-7 flex flex-col">
+                                <div class="w-full h-full min-h-[400px] bg-center bg-no-repeat bg-cover rounded-xl object-cover shadow-lg relative overflow-hidden group"
+                                    data-alt="Peta digital menampilkan jalan kota, taman hijau, dan pin lokasi Asanna Village"
+                                    data-location="Asanna Village"
+                                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA2V-nhCd3sPzrV6HlUItD1w_gjMYtiyT-e6KfB3W8k02wNnPds7vL1Z9q3yHf8AtTao_KOCLFZcAVlo6qOmxsn4yEiA_fgvTrl8cjFtct8aZckcuKAiGD7-oSE-AC4kp4mvpfYO6dDWZ9aIwlvejJc_gB6II7NYHU6Swne47wy0iWJYRgdaCCER1MkTknDUTAXJsO0pIrrTwSIrkdTGD-tybpkWcLOD4d68O6Mj0Exvtg5AyPdp6ZhyW-8Eprmi22wAS3YDi0aj8c");'>
+                                    <div
+                                        class="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-all duration-300">
+                                    </div>
+                                    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                                        <div class="relative flex h-14 w-14 items-center justify-center">
+                                            <span
+                                                class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                                            <span
+                                                class="relative inline-flex rounded-full h-10 w-10 bg-primary border-4 border-white dark:border-gray-800 items-center justify-center text-white shadow-xl">
+                                                <span class="material-symbols-outlined text-xl">location_on</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="absolute bottom-4 left-4 right-4 bg-white/95 dark:bg-gray-900/95 backdrop-blur rounded-lg p-4 shadow-md lg:max-w-xs">
+                                        <h3 class="font-bold text-sm">Asanna Village</h3>
+                                        <p class="text-xs text-gray-500">Jl. Green Valley No. 123, Kota Metropolis</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="lg:col-span-5 flex flex-col justify-center space-y-4">
+                                <div
+                                    class="flex items-center gap-4 bg-white dark:bg-[#1a1a1a] p-4 rounded-xl shadow-sm border border-transparent dark:border-gray-800 hover:border-primary/30 transition-all">
+                                    <div
+                                        class="text-[#111811] dark:text-white flex items-center justify-center rounded-lg bg-[#f0f4f0] dark:bg-gray-800 shrink-0 size-12">
+                                        <span class="material-symbols-outlined text-primary">directions_car</span>
+                                    </div>
+                                    <div class="flex-1 overflow-hidden">
+                                        <h4 class="font-bold text-base dark:text-gray-100 truncate">Pusat Kota</h4>
+                                        <p class="text-gray-500 dark:text-gray-400 text-sm font-medium truncate">10
+                                            menit
+                                            berkendara
+                                        </p>
+                                    </div>
+                                </div>
+                                <div
+                                    class="flex items-center gap-4 bg-white dark:bg-[#1a1a1a] p-4 rounded-xl shadow-sm border border-transparent dark:border-gray-800 hover:border-primary/30 transition-all">
+                                    <div
+                                        class="text-[#111811] dark:text-white flex items-center justify-center rounded-lg bg-[#f0f4f0] dark:bg-gray-800 shrink-0 size-12">
+                                        <span class="material-symbols-outlined text-primary">shopping_bag</span>
+                                    </div>
+                                    <div class="flex-1 overflow-hidden">
+                                        <h4 class="font-bold text-base dark:text-gray-100 truncate">Grand Mall</h4>
+                                        <p class="text-gray-500 dark:text-gray-400 text-sm font-medium truncate">5 menit
+                                            berkendara
+                                        </p>
+                                    </div>
+                                </div>
+                                <div
+                                    class="flex items-center gap-4 bg-white dark:bg-[#1a1a1a] p-4 rounded-xl shadow-sm border border-transparent dark:border-gray-800 hover:border-primary/30 transition-all">
+                                    <div
+                                        class="text-[#111811] dark:text-white flex items-center justify-center rounded-lg bg-[#f0f4f0] dark:bg-gray-800 shrink-0 size-12">
+                                        <span class="material-symbols-outlined text-primary">school</span>
+                                    </div>
+                                    <div class="flex-1 overflow-hidden">
+                                        <h4 class="font-bold text-base dark:text-gray-100 truncate">Sekolah
+                                            Internasional</h4>
+                                        <p class="text-gray-500 dark:text-gray-400 text-sm font-medium truncate">Jarak
+                                            berjalan
+                                            kaki</p>
+                                    </div>
+                                </div>
+                                <div
+                                    class="flex items-center gap-4 bg-white dark:bg-[#1a1a1a] p-4 rounded-xl shadow-sm border border-transparent dark:border-gray-800 hover:border-primary/30 transition-all">
+                                    <div
+                                        class="text-[#111811] dark:text-white flex items-center justify-center rounded-lg bg-[#f0f4f0] dark:bg-gray-800 shrink-0 size-12">
+                                        <span class="material-symbols-outlined text-primary">flight_takeoff</span>
+                                    </div>
+                                    <div class="flex-1 overflow-hidden">
+                                        <h4 class="font-bold text-base dark:text-gray-100 truncate">Bandara</h4>
+                                        <p class="text-gray-500 dark:text-gray-400 text-sm font-medium truncate">15
+                                            menit via
+                                            Tol</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="contact"
+                    class="px-6 lg:px-40 flex flex-1 justify-center py-12 lg:py-20 bg-white dark:bg-background-dark">
+                    <div class="layout-content-container flex flex-col max-w-[1200px] flex-1">
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                            <div class="flex flex-col justify-center">
+                                <span class="text-primary font-bold text-sm tracking-wider uppercase mb-2">Contact
+                                    Us</span>
+                                <h2
+                                    class="text-[32px] lg:text-[40px] font-extrabold leading-tight tracking-[-0.015em] mb-6 dark:text-white">
+                                    Let's start a conversation.</h2>
+                                <p class="text-gray-600 dark:text-gray-300 text-lg mb-10 leading-relaxed">
+                                    Siap menemukan rumah impian Anda di Asanna Village? Tim kami siap menjawab
+                                    pertanyaan Anda
+                                    dan menjadwalkan tur pribadi.
+                                </p>
+                                <div class="space-y-8">
+                                    <div class="flex gap-5">
+                                        <div
+                                            class="flex-shrink-0 size-12 rounded-full bg-primary/20 flex items-center justify-center text-primary">
+                                            <span class="material-symbols-outlined">location_on</span>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-bold text-lg dark:text-white">Kunjungi Kami</h4>
+                                            <p class="text-gray-500 dark:text-gray-400 mt-1">Jl. Green Valley No.
+                                                123,<br />Kota
+                                                Metropolis, 54321</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex gap-5">
+                                        <div
+                                            class="flex-shrink-0 size-12 rounded-full bg-primary/20 flex items-center justify-center text-primary">
+                                            <span class="material-symbols-outlined">call</span>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-bold text-lg dark:text-white">Telepon Kami</h4>
+                                            <p class="text-gray-500 dark:text-gray-400 mt-1">+62 21 5555
+                                                1234<br />Sen-Sab,
+                                                9:00
+                                                - 18:00</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex gap-5">
+                                        <div
+                                            class="flex-shrink-0 size-12 rounded-full bg-primary/20 flex items-center justify-center text-primary">
+                                            <span class="material-symbols-outlined">mail</span>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-bold text-lg dark:text-white">Email Kami</h4>
+                                            <p class="text-gray-500 dark:text-gray-400 mt-1">
+                                                sales@asannavillage.com<br />info@asannavillage.com</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div
+                                class="bg-background-light dark:bg-[#1a2e1a] p-8 lg:p-10 rounded-2xl border border-transparent dark:border-gray-800 shadow-xl">
+                                <h3 class="text-xl font-bold mb-6 dark:text-white">Formulir Pertanyaan</h3>
+                                <form class="space-y-5" id="inquireForm">
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                        <div class="space-y-2">
+                                            <label class="text-sm font-medium text-gray-700 dark:text-gray-300"
+                                                for="firstName">Nama Depan</label>
+                                            <input
+                                                class="w-full px-4 py-3 rounded-lg bg-white dark:bg-[#0c1a0c] border border-gray-200 dark:border-gray-700 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all dark:text-white placeholder-gray-400"
+                                                id="firstName" placeholder="Siti" type="text" required />
+                                        </div>
+                                        <div class="space-y-2">
+                                            <label class="text-sm font-medium text-gray-700 dark:text-gray-300"
+                                                for="lastName">Nama Belakang</label>
+                                            <input
+                                                class="w-full px-4 py-3 rounded-lg bg-white dark:bg-[#0c1a0c] border border-gray-200 dark:border-gray-700 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all dark:text-white placeholder-gray-400"
+                                                id="lastName" placeholder="Rahayu" type="text" required />
+                                        </div>
+                                    </div>
+                                    <div class="space-y-2">
+                                        <label class="text-sm font-medium text-gray-700 dark:text-gray-300"
+                                            for="email">Alamat
+                                            Email</label>
+                                        <input
+                                            class="w-full px-4 py-3 rounded-lg bg-white dark:bg-[#0c1a0c] border border-gray-200 dark:border-gray-700 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all dark:text-white placeholder-gray-400"
+                                            id="email" placeholder="siti@example.com" type="email" required />
+                                    </div>
+                                    <div class="space-y-2">
+                                        <label class="text-sm font-medium text-gray-700 dark:text-gray-300"
+                                            for="phone">Nomor
+                                            Telepon</label>
+                                        <input
+                                            class="w-full px-4 py-3 rounded-lg bg-white dark:bg-[#0c1a0c] border border-gray-200 dark:border-gray-700 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all dark:text-white placeholder-gray-400"
+                                            id="phone" placeholder="+62 812 3456 7890" type="tel" required />
+                                    </div>
+                                    <div class="space-y-2">
+                                        <label class="text-sm font-medium text-gray-700 dark:text-gray-300"
+                                            for="message">Bagaimana kami bisa membantu?</label>
+                                        <textarea
+                                            class="w-full px-4 py-3 rounded-lg bg-white dark:bg-[#0c1a0c] border border-gray-200 dark:border-gray-700 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all dark:text-white placeholder-gray-400 resize-none"
+                                            id="message" placeholder="Saya tertarik dengan unit 3 kamar tidur..."
+                                            rows="4" required></textarea>
+                                    </div>
+                                    <button
+                                        class="w-full py-4 mt-2 bg-cta hover:bg-cta/90 text-white font-bold rounded-lg transition-colors shadow-lg shadow-cta/30 flex items-center justify-center gap-2"
+                                        type="submit">
+                                        Kirim Pesan
+                                        <span class="material-symbols-outlined text-lg">arrow_forward</span>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <footer
+            class="border-t border-[#f0f4f0] dark:border-gray-800 bg-white dark:bg-background-dark py-8 px-6 lg:px-40">
+            <div class="mx-auto max-w-[1200px] flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="flex items-center gap-2 text-[#111811] dark:text-white">
+                    <div class="size-6 text-primary">
+                        <svg fill="currentColor" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                            <path clip-rule="evenodd"
+                                d="M39.475 21.6262C40.358 21.4363 40.6863 21.5589 40.7581 21.5934C40.7876 21.655 40.8547 21.857 40.8082 22.3336C40.7408 23.0255 40.4502 24.0046 39.8572 25.2301C38.6799 27.6631 36.5085 30.6631 33.5858 33.5858C30.6631 36.5085 27.6632 38.6799 25.2301 39.8572C24.0046 40.4502 23.0255 40.7407 22.3336 40.8082C21.8571 40.8547 21.6551 40.7875 21.5934 40.7581C21.5589 40.6863 21.4363 40.358 21.6262 39.475C21.8562 38.4054 22.4689 36.9657 23.5038 35.2817C24.7575 33.2417 26.5497 30.9744 28.7621 28.762C30.9744 26.5497 33.2417 24.7574 35.2817 23.5037C36.9657 22.4689 38.4054 21.8562 39.475 21.6262ZM4.41189 29.2403L18.7597 43.5881C19.8813 44.7097 21.4027 44.9179 22.7217 44.7893C24.0585 44.659 25.5148 44.1631 26.9723 43.4579C29.9052 42.0387 33.2618 39.5667 36.4142 36.4142C39.5667 33.2618 42.0387 29.9052 43.4579 26.9723C44.1631 25.5148 44.659 24.0585 44.7893 22.7217C44.9179 21.4027 44.7097 19.8813 43.5881 18.7597L29.2403 4.41187C27.8527 3.02428 25.8765 3.02573 24.2861 3.36776C22.6081 3.72863 20.7334 4.58419 18.8396 5.74801C16.4978 7.18716 13.9881 9.18353 11.5858 11.5858C9.18354 13.988 7.18717 16.4978 5.74802 18.8396C4.58421 20.7334 3.72865 22.6081 3.36778 24.2861C3.02574 25.8765 3.02429 27.8527 4.41189 29.2403Z"
+                                fill-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                    <span class="font-bold">Asanna Village</span>
+                </div>
+                <div class="flex gap-6">
+                    <a class="text-sm text-gray-500 hover:text-primary transition-colors" href="#">Privacy Policy</a>
+                    <a class="text-sm text-gray-500 hover:text-primary transition-colors" href="#">Terms of Service</a>
+                </div>
+                <p class="text-sm text-gray-500 dark:text-gray-400">© 2024 Asanna Village. Hak cipta dilindungi
+                    undang-undang.</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Floor Plan Modal -->
+    <div id="denahModal"
+        class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/80 backdrop-blur-sm p-4 opacity-0 transition-opacity duration-300">
+        <div class="relative w-full max-w-md bg-white rounded-2xl overflow-hidden shadow-2xl transform scale-95 transition-transform duration-300 mx-auto"
+            id="denahContent">
+            <!-- Close Button -->
+            <button onclick="closeDenah()"
+                class="absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-black/50 text-white flex items-center justify-center hover:bg-black/70 transition-colors">
+                <span class="material-symbols-outlined text-sm">close</span>
+            </button>
+
+            <div class="p-1 bg-[#F4EFE7] flex justify-center">
+                <img id="denahImage" src="" alt="Denah Rumah"
+                    class="w-auto h-auto max-h-[55vh] rounded-xl object-contain" />
+            </div>
+            <div class="p-4 text-center">
+                <h3 id="denahTitle" class="text-xl font-serif font-extrabold text-[#a0724f] mb-1">Denah Tipe</h3>
+                <p class="text-xs lg:text-sm text-gray-600">Layout yang dirancang untuk kenyamanan maksimal.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Core Logic -->
+    <script src="js/app.js"></script>
+</body>
