@@ -12,6 +12,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
         rel="stylesheet" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <script id="tailwind-config">
         tailwind.config = {
@@ -42,11 +43,157 @@
         html {
             scroll-behavior: smooth;
         }
+
+        /* Hero Text Reveal Animation */
+        .reveal-text {
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+            line-height: 1.15;
+        }
+
+        .reveal-text .char {
+            transform: translateY(100%);
+            opacity: 0;
+            animation: text-reveal 1s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+        }
+
+        @keyframes text-reveal {
+            0% {
+                transform: translateY(100%);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Premium Loader */
+        #loader {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background-color: #F4EFE7;
+            /* Premium Cream Background */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.8s ease-in-out, visibility 0.8s step-end;
+        }
+
+        #loader.hidden-loader {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-logo {
+            width: 120px;
+            margin-bottom: 20px;
+            animation: pulse-logo 2s infinite ease-in-out;
+        }
+
+        /* Progress Bar Container */
+        .loading-bar-container {
+            width: 180px;
+            height: 2px;
+            background-color: rgba(160, 114, 79, 0.2);
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Animated Bar */
+        .loading-bar {
+            width: 0%;
+            height: 100%;
+            background-color: #A0724F;
+            animation: progress-fill 2s ease-in-out forwards;
+            box-shadow: 0 0 10px rgba(160, 114, 79, 0.5);
+        }
+
+        @keyframes pulse-logo {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 1;
+                filter: drop-shadow(0 0 5px rgba(160, 114, 79, 0.2));
+            }
+
+            50% {
+                transform: scale(1.05);
+                opacity: 0.8;
+                filter: drop-shadow(0 0 15px rgba(160, 114, 79, 0.4));
+            }
+        }
+
+        @keyframes progress-fill {
+            0% {
+                width: 0%;
+            }
+
+            20% {
+                width: 10%;
+            }
+
+            50% {
+                width: 60%;
+            }
+
+            80% {
+                width: 85%;
+            }
+
+            100% {
+                width: 100%;
+            }
+        }
+
+        /* Smooth Navigation Underline */
+        .nav-link {
+            position: relative;
+            display: inline-block;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #A0724F;
+            transform-origin: bottom right;
+            transition: transform 0.4s cubic-bezier(0.86, 0, 0.07, 1);
+        }
+
+        /* General Active State (Mobile & Desktop) */
+        .active-nav {
+            color: #A0724F !important;
+        }
+
+        /* Specific to Desktop Underline */
+        .nav-link.active-nav::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
     </style>
 </head>
 
 <body
     class="font-display bg-background-light dark:bg-background-dark text-[#32160A] dark:text-[#E8E6DF] overflow-x-hidden antialiased">
+
+    <!-- Premium Loader -->
+    <div id="loader">
+        <img src="images/ASSETS/LOGO%20ASANNA%20PNG.png" alt="Asanna Village Loader"
+            class="loader-logo object-contain" />
+        <div class="loading-bar-container">
+            <div class="loading-bar"></div>
+        </div>
+    </div>
+
     <div class="relative flex min-h-screen w-full flex-col">
         <header
             class="sticky top-0 z-50 w-full border-b border-solid border-[#f0f4f0] dark:border-gray-800 bg-white/95 dark:bg-background-dark/95 backdrop-blur-md px-6 lg:px-10 py-2 transition-colors">
@@ -59,15 +206,15 @@
                 </div>
                 <div class="hidden md:flex flex-1 justify-end gap-8">
                     <div class="flex items-center gap-8">
-                        <a class="text-sm font-semibold leading-normal hover:text-primary transition-colors dark:text-gray-300 dark:hover:text-primary"
+                        <a class="nav-link text-sm font-semibold leading-normal hover:text-primary transition-colors dark:text-gray-300 dark:hover:text-primary"
                             href="#home">Home</a>
-                        <a class="text-sm font-semibold leading-normal hover:text-primary transition-colors dark:text-gray-300 dark:hover:text-primary"
+                        <a class="nav-link text-sm font-semibold leading-normal hover:text-primary transition-colors dark:text-gray-300 dark:hover:text-primary"
                             href="#essence">The Essence</a>
-                        <a class="text-sm font-semibold leading-normal hover:text-primary transition-colors dark:text-gray-300 dark:hover:text-primary"
+                        <a class="nav-link text-sm font-semibold leading-normal hover:text-primary transition-colors dark:text-gray-300 dark:hover:text-primary"
                             href="#living">Living Options</a>
-                        <a class="text-sm font-semibold leading-normal hover:text-primary transition-colors dark:text-gray-300 dark:hover:text-primary"
+                        <a class="nav-link text-sm font-semibold leading-normal hover:text-primary transition-colors dark:text-gray-300 dark:hover:text-primary"
                             href="#features">Features</a>
-                        <a class="text-sm font-semibold leading-normal hover:text-primary transition-colors dark:text-gray-300 dark:hover:text-primary"
+                        <a class="nav-link text-sm font-semibold leading-normal hover:text-primary transition-colors dark:text-gray-300 dark:hover:text-primary"
                             href="#location">Location</a>
                     </div>
                     <a class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-6 bg-cta text-white text-sm font-bold leading-normal tracking-wide hover:bg-cta/90 transition-all shadow-md"
@@ -76,8 +223,29 @@
                     </a>
                 </div>
                 <div class="md:hidden">
-                    <span class="material-symbols-outlined text-3xl dark:text-white">menu</span>
+                    <button id="mobile-menu-btn" class="text-3xl dark:text-white focus:outline-none relative z-50">
+                        <span class="material-symbols-outlined" id="menu-icon">menu</span>
+                    </button>
                 </div>
+            </div>
+
+            <!-- Mobile Menu Overlay -->
+            <div id="mobile-menu"
+                class="fixed inset-0 bg-white/95 dark:bg-background-dark/95 backdrop-blur-xl z-40 transform translate-x-full transition-transform duration-300 md:hidden flex flex-col justify-center items-center gap-8">
+                <a class="text-2xl font-bold hover:text-primary transition-colors dark:text-gray-300" href="#home"
+                    onclick="closeMobileMenu()">Home</a>
+                <a class="text-2xl font-bold hover:text-primary transition-colors dark:text-gray-300" href="#essence"
+                    onclick="closeMobileMenu()">The Essence</a>
+                <a class="text-2xl font-bold hover:text-primary transition-colors dark:text-gray-300" href="#living"
+                    onclick="closeMobileMenu()">Living Options</a>
+                <a class="text-2xl font-bold hover:text-primary transition-colors dark:text-gray-300" href="#features"
+                    onclick="closeMobileMenu()">Features</a>
+                <a class="text-2xl font-bold hover:text-primary transition-colors dark:text-gray-300" href="#location"
+                    onclick="closeMobileMenu()">Location</a>
+                <a class="px-8 py-3 bg-cta text-white text-lg font-bold rounded-xl shadow-lg hover:bg-cta/90 transition-all"
+                    href="#contact" onclick="closeMobileMenu()">
+                    Hubungi Kami
+                </a>
             </div>
         </header>
         <main class="flex-1 w-full">
@@ -88,21 +256,27 @@
                 <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80"></div>
                 <div class="relative z-10 container mx-auto px-6 lg:px-10 text-center text-white">
                     <span
-                        class="inline-block py-1 px-3 rounded-full bg-black/40 backdrop-blur-md border border-white/20 text-xs font-bold tracking-wider uppercase mb-6 animate-fade-in-up shadow-sm">Welcome
+                        class="inline-block py-1 px-3 rounded-full bg-black/40 backdrop-blur-md border border-white/20 text-xs font-bold tracking-wider uppercase mb-6 shadow-sm"
+                        data-aos="fade-down" data-aos-delay="200">Welcome
                         to Asanna</span>
-                    <h1 class="text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6 leading-tight max-w-4xl mx-auto"
+                    <h1 class="hero-title-animate text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6 leading-tight max-w-4xl mx-auto"
                         style="text-shadow: 0 4px 8px rgba(0,0,0,0.8);">
-                        The Essence of <span
-                            style="text-shadow: 0 0 20px rgba(255,255,255,0.7), 0 4px 8px rgba(0,0,0,0.8);">Modern
-                            Living</span>
+                        <span class="block overflow-hidden reveal-text"><span class="char inline-block">The</span> <span
+                                class="char inline-block">Essence</span> <span
+                                class="char inline-block">of</span></span>
+                        <span class="block overflow-hidden reveal-text"
+                            style="text-shadow: 0 0 20px rgba(255,255,255,0.7), 0 4px 8px rgba(0,0,0,0.8);"><span
+                                class="char inline-block delay-100">Modern</span> <span
+                                class="char inline-block delay-200">Living</span></span>
                     </h1>
-                    <p
-                        class="text-lg md:text-xl text-gray-100 max-w-2xl mx-auto mb-10 leading-relaxed font-medium drop-shadow-lg">
+                    <p class="text-lg md:text-xl text-gray-100 max-w-2xl mx-auto mb-10 leading-relaxed font-medium drop-shadow-lg"
+                        data-aos="fade-up" data-aos-delay="600">
                         Rasakan harmoni sempurna antara estetika modern dan ketenangan alam tropis. Asanna Village
                         menghadirkan hunian <span class="italic">Tropical Modern</span> yang dirancang untuk kenyamanan
                         maksimal dan gaya hidup berkelas.
                     </p>
-                    <div class="flex flex-row gap-3 justify-center items-center flex-wrap sm:flex-nowrap">
+                    <div class="flex flex-row gap-3 justify-center items-center flex-wrap sm:flex-nowrap"
+                        data-aos="fade-up" data-aos-delay="800">
                         <a class="w-auto px-5 py-3 lg:px-8 lg:py-4 bg-cta text-white text-xs sm:text-sm lg:text-base font-bold rounded-lg hover:bg-cta/90 transition-all shadow-lg shadow-cta/30 text-center whitespace-nowrap"
                             href="#living">
                             Lihat Hunian
@@ -122,21 +296,21 @@
             <section class="py-20 lg:py-32 bg-white dark:bg-background-dark" id="essence">
                 <div class="container mx-auto px-6 lg:px-10 max-w-[1280px]">
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                        <div class="relative group">
+                        <div class="relative group" data-aos="fade-right">
                             <div
                                 class="absolute -inset-4 bg-primary/20 rounded-2xl transform rotate-2 transition-transform group-hover:rotate-1">
                             </div>
                             <img alt="Keluarga berjalan di taman"
                                 class="relative rounded-2xl shadow-2xl w-full object-cover h-[500px]"
                                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4tAwZ4tdGHo-rupjfGokLK83VMHRH9GbNKFahTlDLSitXJmair3vbHlTeQb1hen-3ag2Fnx5WKib8QjsVlIQkPXttnk_i2Q76BdP15VxwwWAzqywNbT77PDbJ3M2eYM7vQ6PUXwBKR7qCCW-irovHzXMeCTu9mYifcgv20gBRW47gt2-pbalquQvnXz6v_DDtPdQpYo-oGHb07qQpXNsij1Evo_KtiIfwkfyBzcKr1Q-2V9d-V3fioyBaTZbDxkG2mKBUahDBieM" />
-                            <div
-                                class="absolute bottom-8 right-8 bg-white dark:bg-gray-900 p-6 rounded-xl shadow-lg max-w-[200px] border-l-4 border-primary">
+                            <div class="absolute bottom-8 right-8 bg-white dark:bg-gray-900 p-6 rounded-xl shadow-lg max-w-[200px] border-l-4 border-primary"
+                                data-aos="zoom-in" data-aos-delay="300">
                                 <p class="text-4xl font-bold text-primary mb-1">40%</p>
                                 <p class="text-sm font-semibold text-gray-600 dark:text-gray-300">Ruang Terbuka Hijau
                                 </p>
                             </div>
                         </div>
-                        <div class="space-y-8">
+                        <div class="space-y-8" data-aos="fade-left">
                             <div>
                                 <h2 class="text-primary font-bold tracking-wider uppercase mb-3 text-sm">Our Philosophy
                                 </h2>
@@ -156,9 +330,9 @@
                                         <span class="material-symbols-outlined">eco</span>
                                     </span>
                                     <div>
-                                        <h4 class="font-bold text-lg dark:text-white">Desain Berkelanjutan</h4>
-                                        <p class="text-gray-500 dark:text-gray-400">Rumah siap panel surya dengan
-                                            material ramah lingkungan.</p>
+                                        <h4 class="font-bold text-lg dark:text-white">Desain Tropis Adaptif</h4>
+                                        <p class="text-gray-500 dark:text-gray-400">Tata ruang dengan plafon tinggi dan
+                                            bukaan maksimal untuk sirkulasi udara alami yang sejuk dan hemat energi.</p>
                                     </div>
                                 </div>
                                 <div class="flex gap-4">
@@ -181,7 +355,7 @@
                 class="py-20 lg:py-32 bg-background-light dark:bg-[#0c1a0c] border-t border-[#e5e7eb] dark:border-gray-800"
                 id="living">
                 <div class="container mx-auto px-6 lg:px-10 max-w-[1280px]">
-                    <div class="text-center max-w-3xl mx-auto mb-16">
+                    <div class="text-center max-w-3xl mx-auto mb-16" data-aos="fade-up">
                         <span class="text-primary font-bold tracking-wider uppercase text-sm">Living Options</span>
                         <h2 class="text-3xl lg:text-4xl font-bold mt-2 mb-4 dark:text-white">Discover Your Perfect
                             Sanctuary
@@ -191,10 +365,10 @@
                     </div>
                     <div class="flex flex-col gap-24">
                         <!-- Collection 1: 2 Lantai -->
-                        <div class="relative">
+                        <div class="relative" data-aos="fade-up">
                             <!-- Large Header Image -->
                             <div class="relative w-full rounded-3xl overflow-hidden shadow-xl group">
-                                <img src="images/ASSETS/ASANNA_2%20Lantai.jpg" alt="Pilihan 2 Lantai"
+                                <img src="images/ASSETS/2LANTAI%20CERAH.jpeg" alt="Pilihan 2 Lantai"
                                     class="w-full h-auto object-contain" />
                                 <div
                                     class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none">
@@ -210,16 +384,16 @@
                             <!-- Floating Unit Cards -->
                             <!-- Floating Unit Cards Container (2 Lantai) -->
                             <div id="container-2-lantai"
-                                class="grid grid-cols-2 gap-3 lg:gap-6 -mt-16 md:-mt-24 lg:-mt-32 px-2 lg:px-16 relative z-20">
+                                class="grid grid-cols-2 gap-3 lg:gap-6 -mt-8 md:-mt-12 lg:-mt-16 px-2 lg:px-16 relative z-20">
                                 <!-- Cards will be rendered here by js/app.js -->
                             </div>
                         </div>
 
                         <!-- Collection 2: 3 Lantai -->
-                        <div class="relative">
+                        <div class="relative" data-aos="fade-up">
                             <!-- Large Header Image -->
                             <div class="relative w-full rounded-3xl overflow-hidden shadow-xl group">
-                                <img src="images/ASSETS/ASANNA_3%20Lantai.jpg" alt="Pilihan 3 Lantai"
+                                <img src="images/ASSETS/3LANTAI%20CERAH.jpeg" alt="Pilihan 3 Lantai"
                                     class="w-full h-auto object-contain" />
                                 <div
                                     class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none">
@@ -235,7 +409,7 @@
                             <!-- Floating Unit Cards -->
                             <!-- Floating Unit Cards Container (3 Lantai) -->
                             <div id="container-3-lantai"
-                                class="grid grid-cols-2 gap-3 lg:gap-6 -mt-16 md:-mt-24 lg:-mt-32 px-2 lg:px-16 relative z-20">
+                                class="grid grid-cols-2 gap-3 lg:gap-6 -mt-8 md:-mt-12 lg:-mt-16 px-2 lg:px-16 relative z-20">
                                 <!-- Cards will be rendered here by js/app.js -->
                             </div>
                         </div>
@@ -245,7 +419,7 @@
             <section id="features" class="py-20 lg:py-32 bg-white dark:bg-background-dark overflow-hidden">
                 <div class="container mx-auto px-6 lg:px-10 max-w-[1280px]">
                     <!-- Intro -->
-                    <div class="text-center mb-16 lg:mb-24">
+                    <div class="text-center mb-16 lg:mb-24" data-aos="fade-up">
                         <span class="text-primary font-bold tracking-wider uppercase text-sm">World Class
                             Amenities</span>
                         <h2 class="text-3xl lg:text-5xl font-extrabold mt-3 mb-6 dark:text-white">Curated for <span
@@ -259,14 +433,14 @@
                     <div class="space-y-24 lg:space-y-32">
                         <!-- Item 1: Gate (Image Left, Text Right) -->
                         <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-20 group">
-                            <div class="w-full lg:w-1/2 relative">
+                            <div class="w-full lg:w-1/2 relative" data-aos="fade-right">
                                 <div
                                     class="absolute inset-0 bg-[#a0724f]/10 rounded-3xl transform rotate-3 transition-transform duration-500 group-hover:rotate-6">
                                 </div>
                                 <img src="images/ASSETS/Gate/ASANNA_Gate_1_Edit 1.png" alt="Asanna Main Gate"
                                     class="relative w-full h-[300px] lg:h-[450px] object-cover rounded-3xl shadow-2xl z-10 transition-transform duration-500 group-hover:-translate-y-2" />
                             </div>
-                            <div class="w-full lg:w-1/2">
+                            <div class="w-full lg:w-1/2" data-aos="fade-left">
                                 <div class="space-y-6">
                                     <div
                                         class="size-16 rounded-2xl bg-[#f4efe7] text-[#a0724f] flex items-center justify-center mb-6">
@@ -297,7 +471,7 @@
 
                         <!-- Item 2: Club House (Text Left, Image Right) -->
                         <div class="flex flex-col-reverse lg:flex-row items-center gap-12 lg:gap-20 group">
-                            <div class="w-full lg:w-1/2">
+                            <div class="w-full lg:w-1/2" data-aos="fade-right">
                                 <div class="space-y-6">
                                     <div
                                         class="size-16 rounded-2xl bg-[#f4efe7] text-[#a0724f] flex items-center justify-center mb-6">
@@ -326,7 +500,7 @@
                                 </div>
                             </div>
                             <!-- Bento Grid Images (No Animation, Clear Visibility) -->
-                            <div class="w-full lg:w-1/2 flex flex-col gap-4">
+                            <div class="w-full lg:w-1/2 flex flex-col gap-4" data-aos="fade-left">
                                 <!-- Image 1: Club House Exterior -->
                                 <div
                                     class="relative w-full h-[250px] group overflow-hidden rounded-2xl shadow-lg border border-white/50">
@@ -367,7 +541,7 @@
                 class="flex flex-col bg-background-light dark:bg-[#0c1a0c] border-t border-[#f0f4f0] dark:border-gray-800">
                 <div class="px-6 lg:px-40 flex flex-1 justify-center py-12 lg:py-20">
                     <div class="layout-content-container flex flex-col max-w-[1200px] flex-1">
-                        <div class="mb-10 text-center lg:text-left">
+                        <div class="mb-10 text-center lg:text-left" data-aos="fade-right">
                             <span class="text-primary font-bold tracking-wider uppercase text-sm">Location</span>
                             <h2
                                 class="text-[28px] lg:text-[32px] font-bold leading-tight tracking-[-0.015em] mt-2 dark:text-white">
@@ -377,7 +551,7 @@
                                 yang penting.</p>
                         </div>
                         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
-                            <div class="lg:col-span-7 flex flex-col">
+                            <div class="lg:col-span-7 flex flex-col" data-aos="zoom-in">
                                 <div class="w-full h-full min-h-[400px] bg-center bg-no-repeat bg-cover rounded-xl object-cover shadow-lg relative overflow-hidden group"
                                     data-alt="Peta digital menampilkan jalan kota, taman hijau, dan pin lokasi Asanna Village"
                                     data-location="Asanna Village"
@@ -395,178 +569,360 @@
                                             </span>
                                         </div>
                                     </div>
-                                    <div
-                                        class="absolute bottom-4 left-4 right-4 bg-white/95 dark:bg-gray-900/95 backdrop-blur rounded-lg p-4 shadow-md lg:max-w-xs">
-                                        <h3 class="font-bold text-sm">Asanna Village</h3>
-                                        <p class="text-xs text-gray-500">Jl. Green Valley No. 123, Kota Metropolis</p>
-                                    </div>
+                                    <a href="https://www.google.com/maps/search/?api=1&query=-6.336190,106.712098"
+                                        target="_blank"
+                                        class="absolute bottom-4 left-4 right-4 bg-white/95 dark:bg-gray-900/95 backdrop-blur rounded-lg p-4 shadow-md lg:max-w-xs hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors block group/card">
+                                        <h3 class="font-bold text-sm group-hover/card:text-primary transition-colors">
+                                            Asanna Village</h3>
+                                        <p class="text-xs text-gray-500">Jl. Raya Puspitek, Pamulang, Tangerang Selatan
+                                        </p>
+                                        <div class="mt-2 text-[10px] text-primary font-bold flex items-center gap-1">
+                                            LIHAT DI MAPS <span
+                                                class="material-symbols-outlined text-sm transition-transform group-hover/card:translate-x-1">arrow_outward</span>
+                                        </div>
+                                    </a>
                                 </div>
                             </div>
-                            <div class="lg:col-span-5 flex flex-col justify-center space-y-4">
-                                <div
-                                    class="flex items-center gap-4 bg-white dark:bg-[#1a1a1a] p-4 rounded-xl shadow-sm border border-transparent dark:border-gray-800 hover:border-primary/30 transition-all">
+                            <div class="lg:col-span-5 flex flex-col justify-center gap-6" data-aos="fade-left">
+                                <!-- Highlighted Locations (Top 4) -->
+                                <div class="grid grid-cols-2 gap-4">
+                                    <!-- Highlight 1: Kawasan BSD -->
                                     <div
-                                        class="text-[#111811] dark:text-white flex items-center justify-center rounded-lg bg-[#f0f4f0] dark:bg-gray-800 shrink-0 size-12">
-                                        <span class="material-symbols-outlined text-primary">directions_car</span>
+                                        class="bg-primary/10 dark:bg-primary/20 p-4 rounded-xl border border-primary/20 flex flex-col items-start gap-2 hover:bg-primary/20 transition-colors group">
+                                        <div
+                                            class="bg-white dark:bg-gray-800 p-2 rounded-lg text-primary shadow-sm group-hover:scale-110 transition-transform">
+                                            <span class="material-symbols-outlined text-2xl">location_city</span>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-bold text-base dark:text-white leading-tight">Kawasan BSD
+                                            </h4>
+                                            <p class="text-xs lg:text-sm text-primary font-semibold mt-1">10 Menit</p>
+                                        </div>
                                     </div>
-                                    <div class="flex-1 overflow-hidden">
-                                        <h4 class="font-bold text-base dark:text-gray-100 truncate">Pusat Kota</h4>
-                                        <p class="text-gray-500 dark:text-gray-400 text-sm font-medium truncate">10
-                                            menit
-                                            berkendara
-                                        </p>
+                                    <!-- Highlight 2: Tol Serpong - Jakarta -->
+                                    <div
+                                        class="bg-primary/10 dark:bg-primary/20 p-4 rounded-xl border border-primary/20 flex flex-col items-start gap-2 hover:bg-primary/20 transition-colors group">
+                                        <div
+                                            class="bg-white dark:bg-gray-800 p-2 rounded-lg text-primary shadow-sm group-hover:scale-110 transition-transform">
+                                            <span class="material-symbols-outlined text-2xl">toll</span>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-bold text-base dark:text-white leading-tight">Tol Serpong -
+                                                Jkt</h4>
+                                            <p class="text-xs lg:text-sm text-primary font-semibold mt-1">10 Menit</p>
+                                        </div>
+                                    </div>
+                                    <!-- Highlight 3: Stasiun Rawabuntu -->
+                                    <div
+                                        class="bg-primary/10 dark:bg-primary/20 p-4 rounded-xl border border-primary/20 flex flex-col items-start gap-2 hover:bg-primary/20 transition-colors group">
+                                        <div
+                                            class="bg-white dark:bg-gray-800 p-2 rounded-lg text-primary shadow-sm group-hover:scale-110 transition-transform">
+                                            <span class="material-symbols-outlined text-2xl">train</span>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-bold text-base dark:text-white leading-tight">St. Rawabuntu
+                                            </h4>
+                                            <p class="text-xs lg:text-sm text-primary font-semibold mt-1">15 Menit</p>
+                                        </div>
+                                    </div>
+                                    <!-- Highlight 4: Univ. Pamulang -->
+                                    <div
+                                        class="bg-primary/10 dark:bg-primary/20 p-4 rounded-xl border border-primary/20 flex flex-col items-start gap-2 hover:bg-primary/20 transition-colors group">
+                                        <div
+                                            class="bg-white dark:bg-gray-800 p-2 rounded-lg text-primary shadow-sm group-hover:scale-110 transition-transform">
+                                            <span class="material-symbols-outlined text-2xl">school</span>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-bold text-base dark:text-white leading-tight">Univ. Pamulang
+                                            </h4>
+                                            <p class="text-xs lg:text-sm text-primary font-semibold mt-1">7 Menit</p>
+                                        </div>
                                     </div>
                                 </div>
-                                <div
-                                    class="flex items-center gap-4 bg-white dark:bg-[#1a1a1a] p-4 rounded-xl shadow-sm border border-transparent dark:border-gray-800 hover:border-primary/30 transition-all">
+
+                                <!-- Other Locations (Compact List) -->
+                                <div>
+                                    <h5 class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3 pl-1">
+                                        Landmark Sekitar Lainnya</h5>
                                     <div
-                                        class="text-[#111811] dark:text-white flex items-center justify-center rounded-lg bg-[#f0f4f0] dark:bg-gray-800 shrink-0 size-12">
-                                        <span class="material-symbols-outlined text-primary">shopping_bag</span>
-                                    </div>
-                                    <div class="flex-1 overflow-hidden">
-                                        <h4 class="font-bold text-base dark:text-gray-100 truncate">Grand Mall</h4>
-                                        <p class="text-gray-500 dark:text-gray-400 text-sm font-medium truncate">5 menit
-                                            berkendara
-                                        </p>
-                                    </div>
-                                </div>
-                                <div
-                                    class="flex items-center gap-4 bg-white dark:bg-[#1a1a1a] p-4 rounded-xl shadow-sm border border-transparent dark:border-gray-800 hover:border-primary/30 transition-all">
-                                    <div
-                                        class="text-[#111811] dark:text-white flex items-center justify-center rounded-lg bg-[#f0f4f0] dark:bg-gray-800 shrink-0 size-12">
-                                        <span class="material-symbols-outlined text-primary">school</span>
-                                    </div>
-                                    <div class="flex-1 overflow-hidden">
-                                        <h4 class="font-bold text-base dark:text-gray-100 truncate">Sekolah
-                                            Internasional</h4>
-                                        <p class="text-gray-500 dark:text-gray-400 text-sm font-medium truncate">Jarak
-                                            berjalan
-                                            kaki</p>
-                                    </div>
-                                </div>
-                                <div
-                                    class="flex items-center gap-4 bg-white dark:bg-[#1a1a1a] p-4 rounded-xl shadow-sm border border-transparent dark:border-gray-800 hover:border-primary/30 transition-all">
-                                    <div
-                                        class="text-[#111811] dark:text-white flex items-center justify-center rounded-lg bg-[#f0f4f0] dark:bg-gray-800 shrink-0 size-12">
-                                        <span class="material-symbols-outlined text-primary">flight_takeoff</span>
-                                    </div>
-                                    <div class="flex-1 overflow-hidden">
-                                        <h4 class="font-bold text-base dark:text-gray-100 truncate">Bandara</h4>
-                                        <p class="text-gray-500 dark:text-gray-400 text-sm font-medium truncate">15
-                                            menit via
-                                            Tol</p>
+                                        class="grid grid-cols-2 gap-x-4 gap-y-3 text-sm text-gray-600 dark:text-gray-400">
+                                        <div class="flex items-center gap-2 group hover:text-primary transition-colors">
+                                            <span
+                                                class="material-symbols-outlined text-gray-400 text-lg group-hover:text-primary transition-colors">account_balance</span>
+                                            <span class="truncate">Puspemkot Tangsel <span
+                                                    class="text-xs text-gray-400 group-hover:text-primary/70">(5m)</span></span>
+                                        </div>
+                                        <div class="flex items-center gap-2 group hover:text-primary transition-colors">
+                                            <span
+                                                class="material-symbols-outlined text-gray-400 text-lg group-hover:text-primary transition-colors">shopping_basket</span>
+                                            <span class="truncate">Superindo <span
+                                                    class="text-xs text-gray-400 group-hover:text-primary/70">(5m)</span></span>
+                                        </div>
+                                        <div class="flex items-center gap-2 group hover:text-primary transition-colors">
+                                            <span
+                                                class="material-symbols-outlined text-gray-400 text-lg group-hover:text-primary transition-colors">local_gas_station</span>
+                                            <span class="truncate">SPBU <span
+                                                    class="text-xs text-gray-400 group-hover:text-primary/70">(5m)</span></span>
+                                        </div>
+                                        <div class="flex items-center gap-2 group hover:text-primary transition-colors">
+                                            <span
+                                                class="material-symbols-outlined text-gray-400 text-lg group-hover:text-primary transition-colors">local_hospital</span>
+                                            <span class="truncate">RS Permata Pamulang <span
+                                                    class="text-xs text-gray-400 group-hover:text-primary/70">(5m)</span></span>
+                                        </div>
+                                        <div class="flex items-center gap-2 group hover:text-primary transition-colors">
+                                            <span
+                                                class="material-symbols-outlined text-gray-400 text-lg group-hover:text-primary transition-colors">local_mall</span>
+                                            <span class="truncate">Mall Paradise Walk <span
+                                                    class="text-xs text-gray-400 group-hover:text-primary/70">(7m)</span></span>
+                                        </div>
+                                        <div class="flex items-center gap-2 group hover:text-primary transition-colors">
+                                            <span
+                                                class="material-symbols-outlined text-gray-400 text-lg group-hover:text-primary transition-colors">storefront</span>
+                                            <span class="truncate">Lotte Grosir <span
+                                                    class="text-xs text-gray-400 group-hover:text-primary/70">(7m)</span></span>
+                                        </div>
+                                        <div class="flex items-center gap-2 group hover:text-primary transition-colors">
+                                            <span
+                                                class="material-symbols-outlined text-gray-400 text-lg group-hover:text-primary transition-colors">school</span>
+                                            <span class="truncate">Global Islamic School <span
+                                                    class="text-xs text-gray-400 group-hover:text-primary/70">(7m)</span></span>
+                                        </div>
+                                        <div class="flex items-center gap-2 group hover:text-primary transition-colors">
+                                            <span
+                                                class="material-symbols-outlined text-gray-400 text-lg group-hover:text-primary transition-colors">school</span>
+                                            <span class="truncate">Al Azhar School <span
+                                                    class="text-xs text-gray-400 group-hover:text-primary/70">(7m)</span></span>
+                                        </div>
+                                        <div class="flex items-center gap-2 group hover:text-primary transition-colors">
+                                            <span
+                                                class="material-symbols-outlined text-gray-400 text-lg group-hover:text-primary transition-colors">local_hospital</span>
+                                            <span class="truncate">RS Hermina <span
+                                                    class="text-xs text-gray-400 group-hover:text-primary/70">(10m)</span></span>
+                                        </div>
+                                        <div class="flex items-center gap-2 group hover:text-primary transition-colors">
+                                            <span
+                                                class="material-symbols-outlined text-gray-400 text-lg group-hover:text-primary transition-colors">school</span>
+                                            <span class="truncate">Institute Tech. Indo <span
+                                                    class="text-xs text-gray-400 group-hover:text-primary/70">(15m)</span></span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div id="contact"
-                    class="px-6 lg:px-40 flex flex-1 justify-center py-12 lg:py-20 bg-white dark:bg-background-dark">
-                    <div class="layout-content-container flex flex-col max-w-[1200px] flex-1">
-                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
-                            <div class="flex flex-col justify-center">
-                                <span class="text-primary font-bold text-sm tracking-wider uppercase mb-2">Contact
-                                    Us</span>
-                                <h2
-                                    class="text-[32px] lg:text-[40px] font-extrabold leading-tight tracking-[-0.015em] mb-6 dark:text-white">
-                                    Let's start a conversation.</h2>
-                                <p class="text-gray-600 dark:text-gray-300 text-lg mb-10 leading-relaxed">
-                                    Siap menemukan rumah impian Anda di Asanna Village? Tim kami siap menjawab
-                                    pertanyaan Anda
-                                    dan menjadwalkan tur pribadi.
-                                </p>
-                                <div class="space-y-8">
-                                    <div class="flex gap-5">
-                                        <div
-                                            class="flex-shrink-0 size-12 rounded-full bg-primary/20 flex items-center justify-center text-primary">
-                                            <span class="material-symbols-outlined">location_on</span>
-                                        </div>
-                                        <div>
-                                            <h4 class="font-bold text-lg dark:text-white">Kunjungi Kami</h4>
-                                            <p class="text-gray-500 dark:text-gray-400 mt-1">Jl. Green Valley No.
-                                                123,<br />Kota
-                                                Metropolis, 54321</p>
-                                        </div>
+            </section>
+            <section id="contact"
+                class="px-6 lg:px-40 flex flex-1 justify-center py-12 lg:py-20 bg-white dark:bg-background-dark">
+                <div class="layout-content-container flex flex-col max-w-[1200px] flex-1">
+
+                    <!-- Header & Intro -->
+                    <div class="max-w-4xl mx-auto text-center mb-12" data-aos="fade-up">
+                        <span class="text-primary font-bold text-sm tracking-wider uppercase mb-2 block">Contact
+                            Us</span>
+                        <h2 class="text-3xl md:text-4xl font-serif font-bold text-[#111811] dark:text-white mb-6">
+                            Let's start a conversation.</h2>
+                        <p class="text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
+                            Siap menemukan rumah impian Anda di Asanna Village? Tim kami siap menjawab pertanyaan Anda
+                            dan menjadwalkan tur pribadi.
+                        </p>
+                    </div>
+
+                    <!-- Form Section (Centered) -->
+                    <div class="max-w-2xl mx-auto mb-16 w-full relative z-30" data-aos="fade-up" data-aos-delay="200">
+                        <div
+                            class="bg-background-light dark:bg-[#1a2e1a] p-8 lg:p-10 rounded-2xl border border-transparent dark:border-gray-800 shadow-xl">
+                            <h3 class="text-xl font-bold mb-6 dark:text-white text-center">Formulir Pertanyaan</h3>
+                            <form class="space-y-5" id="inquireForm">
+                                <div class="space-y-4">
+                                    <div class="space-y-2">
+                                        <label class="text-sm font-medium text-gray-700 dark:text-gray-300"
+                                            for="name">Nama Lengkap</label>
+                                        <input
+                                            class="w-full px-4 py-3 rounded-lg bg-white dark:bg-[#0c1a0c] border border-gray-200 dark:border-gray-700 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all dark:text-white placeholder-gray-400"
+                                            id="name" placeholder="Nama Anda" type="text" required />
                                     </div>
-                                    <div class="flex gap-5">
-                                        <div
-                                            class="flex-shrink-0 size-12 rounded-full bg-primary/20 flex items-center justify-center text-primary">
-                                            <span class="material-symbols-outlined">call</span>
-                                        </div>
-                                        <div>
-                                            <h4 class="font-bold text-lg dark:text-white">Telepon Kami</h4>
-                                            <p class="text-gray-500 dark:text-gray-400 mt-1">+62 21 5555
-                                                1234<br />Sen-Sab,
-                                                9:00
-                                                - 18:00</p>
-                                        </div>
+                                    <div class="space-y-2">
+                                        <label class="text-sm font-medium text-gray-700 dark:text-gray-300"
+                                            for="whatsapp">Nomor WhatsApp</label>
+                                        <input
+                                            class="w-full px-4 py-3 rounded-lg bg-white dark:bg-[#0c1a0c] border border-gray-200 dark:border-gray-700 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all dark:text-white placeholder-gray-400"
+                                            id="whatsapp" placeholder="62812..." type="tel" required />
                                     </div>
-                                    <div class="flex gap-5">
-                                        <div
-                                            class="flex-shrink-0 size-12 rounded-full bg-primary/20 flex items-center justify-center text-primary">
-                                            <span class="material-symbols-outlined">mail</span>
-                                        </div>
-                                        <div>
-                                            <h4 class="font-bold text-lg dark:text-white">Email Kami</h4>
-                                            <p class="text-gray-500 dark:text-gray-400 mt-1">
-                                                sales@asannavillage.com<br />info@asannavillage.com</p>
+                                    <div class="space-y-2">
+                                        <label class="text-sm font-medium text-gray-700 dark:text-gray-300"
+                                            for="houseType">Tipe Rumah yang Diminati</label>
+                                        <div class="relative" id="customDropdown">
+                                            <input type="hidden" id="houseType" name="houseType" required>
+
+                                            <!-- Trigger Button -->
+                                            <button type="button" id="dropdownTrigger"
+                                                class="w-full px-4 py-3 rounded-lg bg-white dark:bg-[#0c1a0c] border border-gray-200 dark:border-gray-700 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all dark:text-white flex items-center justify-between group text-left">
+                                                <span id="selectedOptionText" class="text-gray-400">Pilih Tipe
+                                                    Rumah</span>
+                                                <span
+                                                    class="material-symbols-outlined text-gray-500 group-hover:text-primary transition-colors transform duration-200"
+                                                    id="dropdownIcon">expand_more</span>
+                                            </button>
+
+                                            <!-- Dropdown List -->
+                                            <div id="dropdownList"
+                                                class="absolute z-50 w-full mt-2 bg-white dark:bg-[#0c1a0c] border border-gray-200 dark:border-gray-700 rounded-xl shadow-xl hidden opacity-0 transform scale-95 transition-all duration-200 origin-top overflow-hidden max-h-60 overflow-y-auto">
+
+                                                <!-- 2 Lantai Group -->
+                                                <div
+                                                    class="px-4 py-2 bg-gray-50 dark:bg-gray-800/50 text-[10px] font-bold text-gray-400 uppercase tracking-widest border-b border-gray-100 dark:border-gray-800">
+                                                    2 Lantai Series
+                                                </div>
+                                                <div class="p-1">
+                                                    <button type="button"
+                                                        class="dropdown-option w-full text-left px-3 py-2.5 rounded-lg hover:bg-[#faf4ef] dark:hover:bg-gray-800 transition-colors group/item"
+                                                        data-value="Ayana" data-text="Tipe Ayana">
+                                                        <div class="flex flex-col">
+                                                            <span
+                                                                class="font-bold text-[#a0724f] dark:text-[#d4af37] text-sm group-hover/item:translate-x-1 transition-transform">Tipe
+                                                                Ayana</span>
+                                                            <span
+                                                                class="text-[11px] text-gray-500 font-medium mt-0.5 flex items-center gap-2">
+                                                                <span class="flex items-center gap-1"><span
+                                                                        class="material-symbols-outlined text-[12px]">bed</span>
+                                                                    3+1</span>
+                                                                <span class="w-1 h-1 rounded-full bg-gray-300"></span>
+                                                                <span class="flex items-center gap-1"><span
+                                                                        class="material-symbols-outlined text-[12px]">bathtub</span>
+                                                                    3</span>
+                                                                <span class="w-1 h-1 rounded-full bg-gray-300"></span>
+                                                                <span>LB 88 / LT 84</span>
+                                                            </span>
+                                                        </div>
+                                                    </button>
+                                                    <button type="button"
+                                                        class="dropdown-option w-full text-left px-3 py-2.5 rounded-lg hover:bg-[#faf4ef] dark:hover:bg-gray-800 transition-colors group/item"
+                                                        data-value="Aleya" data-text="Tipe Aleya">
+                                                        <div class="flex flex-col">
+                                                            <span
+                                                                class="font-bold text-[#a0724f] dark:text-[#d4af37] text-sm group-hover/item:translate-x-1 transition-transform">Tipe
+                                                                Aleya</span>
+                                                            <span
+                                                                class="text-[11px] text-gray-500 font-medium mt-0.5 flex items-center gap-2">
+                                                                <span class="flex items-center gap-1"><span
+                                                                        class="material-symbols-outlined text-[12px]">bed</span>
+                                                                    3</span>
+                                                                <span class="w-1 h-1 rounded-full bg-gray-300"></span>
+                                                                <span class="flex items-center gap-1"><span
+                                                                        class="material-symbols-outlined text-[12px]">bathtub</span>
+                                                                    2</span>
+                                                                <span class="w-1 h-1 rounded-full bg-gray-300"></span>
+                                                                <span>LB 65 / LT 60</span>
+                                                            </span>
+                                                        </div>
+                                                    </button>
+                                                </div>
+
+                                                <!-- 3 Lantai Group -->
+                                                <div
+                                                    class="px-4 py-2 bg-gray-50 dark:bg-gray-800/50 text-[10px] font-bold text-gray-400 uppercase tracking-widest border-y border-gray-100 dark:border-gray-800">
+                                                    3 Lantai Series
+                                                </div>
+                                                <div class="p-1">
+                                                    <button type="button"
+                                                        class="dropdown-option w-full text-left px-3 py-2.5 rounded-lg hover:bg-[#faf4ef] dark:hover:bg-gray-800 transition-colors group/item"
+                                                        data-value="Aleena" data-text="Tipe Aleena">
+                                                        <div class="flex flex-col">
+                                                            <span
+                                                                class="font-bold text-[#a0724f] dark:text-[#d4af37] text-sm group-hover/item:translate-x-1 transition-transform">Tipe
+                                                                Aleena</span>
+                                                            <span
+                                                                class="text-[11px] text-gray-500 font-medium mt-0.5 flex items-center gap-2">
+                                                                <span class="flex items-center gap-1"><span
+                                                                        class="material-symbols-outlined text-[12px]">bed</span>
+                                                                    3</span>
+                                                                <span class="w-1 h-1 rounded-full bg-gray-300"></span>
+                                                                <span class="flex items-center gap-1"><span
+                                                                        class="material-symbols-outlined text-[12px]">bathtub</span>
+                                                                    3</span>
+                                                                <span class="w-1 h-1 rounded-full bg-gray-300"></span>
+                                                                <span>LB 88 / LT 84</span>
+                                                            </span>
+                                                        </div>
+                                                    </button>
+                                                    <button type="button"
+                                                        class="dropdown-option w-full text-left px-3 py-2.5 rounded-lg hover:bg-[#faf4ef] dark:hover:bg-gray-800 transition-colors group/item"
+                                                        data-value="Alunna" data-text="Tipe Alunna">
+                                                        <div class="flex flex-col">
+                                                            <span
+                                                                class="font-bold text-[#a0724f] dark:text-[#d4af37] text-sm group-hover/item:translate-x-1 transition-transform">Tipe
+                                                                Alunna</span>
+                                                            <span
+                                                                class="text-[11px] text-gray-500 font-medium mt-0.5 flex items-center gap-2">
+                                                                <span class="flex items-center gap-1"><span
+                                                                        class="material-symbols-outlined text-[12px]">bed</span>
+                                                                    2</span>
+                                                                <span class="w-1 h-1 rounded-full bg-gray-300"></span>
+                                                                <span class="flex items-center gap-1"><span
+                                                                        class="material-symbols-outlined text-[12px]">bathtub</span>
+                                                                    2</span>
+                                                                <span class="w-1 h-1 rounded-full bg-gray-300"></span>
+                                                                <span>LB 65 / LT 60</span>
+                                                            </span>
+                                                        </div>
+                                                    </button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                                <button
+                                    class="w-full py-4 mt-2 bg-cta hover:bg-cta/90 text-white font-bold rounded-lg transition-colors shadow-lg shadow-cta/30 flex items-center justify-center gap-2"
+                                    type="submit">
+                                    Kirim Pesan
+                                    <span class="material-symbols-outlined text-lg">arrow_forward</span>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Contact Info Cards (Grid) -->
+                    <div class="grid grid-cols-3 gap-2 md:gap-6 max-w-6xl mx-auto w-full" data-aos="fade-up"
+                        data-aos-delay="400">
+                        <!-- Visit Us -->
+                        <div
+                            class="flex flex-col items-center text-center p-3 md:p-6 rounded-2xl bg-gray-50 dark:bg-gray-800/50 hover:bg-white dark:hover:bg-gray-800 hover:shadow-lg transition-all duration-300 border border-transparent hover:border-gray-100 dark:hover:border-gray-700">
                             <div
-                                class="bg-background-light dark:bg-[#1a2e1a] p-8 lg:p-10 rounded-2xl border border-transparent dark:border-gray-800 shadow-xl">
-                                <h3 class="text-xl font-bold mb-6 dark:text-white">Formulir Pertanyaan</h3>
-                                <form class="space-y-5" id="inquireForm">
-                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                                        <div class="space-y-2">
-                                            <label class="text-sm font-medium text-gray-700 dark:text-gray-300"
-                                                for="firstName">Nama Depan</label>
-                                            <input
-                                                class="w-full px-4 py-3 rounded-lg bg-white dark:bg-[#0c1a0c] border border-gray-200 dark:border-gray-700 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all dark:text-white placeholder-gray-400"
-                                                id="firstName" placeholder="Siti" type="text" required />
-                                        </div>
-                                        <div class="space-y-2">
-                                            <label class="text-sm font-medium text-gray-700 dark:text-gray-300"
-                                                for="lastName">Nama Belakang</label>
-                                            <input
-                                                class="w-full px-4 py-3 rounded-lg bg-white dark:bg-[#0c1a0c] border border-gray-200 dark:border-gray-700 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all dark:text-white placeholder-gray-400"
-                                                id="lastName" placeholder="Rahayu" type="text" required />
-                                        </div>
-                                    </div>
-                                    <div class="space-y-2">
-                                        <label class="text-sm font-medium text-gray-700 dark:text-gray-300"
-                                            for="email">Alamat
-                                            Email</label>
-                                        <input
-                                            class="w-full px-4 py-3 rounded-lg bg-white dark:bg-[#0c1a0c] border border-gray-200 dark:border-gray-700 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all dark:text-white placeholder-gray-400"
-                                            id="email" placeholder="siti@example.com" type="email" required />
-                                    </div>
-                                    <div class="space-y-2">
-                                        <label class="text-sm font-medium text-gray-700 dark:text-gray-300"
-                                            for="phone">Nomor
-                                            Telepon</label>
-                                        <input
-                                            class="w-full px-4 py-3 rounded-lg bg-white dark:bg-[#0c1a0c] border border-gray-200 dark:border-gray-700 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all dark:text-white placeholder-gray-400"
-                                            id="phone" placeholder="+62 812 3456 7890" type="tel" required />
-                                    </div>
-                                    <div class="space-y-2">
-                                        <label class="text-sm font-medium text-gray-700 dark:text-gray-300"
-                                            for="message">Bagaimana kami bisa membantu?</label>
-                                        <textarea
-                                            class="w-full px-4 py-3 rounded-lg bg-white dark:bg-[#0c1a0c] border border-gray-200 dark:border-gray-700 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all dark:text-white placeholder-gray-400 resize-none"
-                                            id="message" placeholder="Saya tertarik dengan unit 3 kamar tidur..."
-                                            rows="4" required></textarea>
-                                    </div>
-                                    <button
-                                        class="w-full py-4 mt-2 bg-cta hover:bg-cta/90 text-white font-bold rounded-lg transition-colors shadow-lg shadow-cta/30 flex items-center justify-center gap-2"
-                                        type="submit">
-                                        Kirim Pesan
-                                        <span class="material-symbols-outlined text-lg">arrow_forward</span>
-                                    </button>
-                                </form>
+                                class="flex-shrink-0 size-10 md:size-12 rounded-full bg-primary/20 flex items-center justify-center text-primary mb-2 md:mb-4">
+                                <span class="material-symbols-outlined text-lg md:text-2xl">location_on</span>
                             </div>
+                            <h4 class="font-bold text-xs md:text-lg dark:text-white mb-1 md:mb-2">Kunjungi Kami</h4>
+                            <p class="text-gray-500 dark:text-gray-400 text-[10px] md:text-sm leading-relaxed">Jl. Green
+                                Valley No.
+                                123,<br />Kota Metropolis, 54321</p>
+                        </div>
+
+                        <!-- Call Us -->
+                        <div
+                            class="flex flex-col items-center text-center p-3 md:p-6 rounded-2xl bg-gray-50 dark:bg-gray-800/50 hover:bg-white dark:hover:bg-gray-800 hover:shadow-lg transition-all duration-300 border border-transparent hover:border-gray-100 dark:hover:border-gray-700">
+                            <div
+                                class="flex-shrink-0 size-10 md:size-12 rounded-full bg-primary/20 flex items-center justify-center text-primary mb-2 md:mb-4">
+                                <span class="material-symbols-outlined text-lg md:text-2xl">call</span>
+                            </div>
+                            <h4 class="font-bold text-xs md:text-lg dark:text-white mb-1 md:mb-2">Telepon Kami</h4>
+                            <p class="text-gray-500 dark:text-gray-400 text-[10px] md:text-sm leading-relaxed">+62 21
+                                5555
+                                1234<br />Sen-Sab, 9:00 - 18:00</p>
+                        </div>
+
+                        <!-- Email Us -->
+                        <div
+                            class="flex flex-col items-center text-center p-3 md:p-6 rounded-2xl bg-gray-50 dark:bg-gray-800/50 hover:bg-white dark:hover:bg-gray-800 hover:shadow-lg transition-all duration-300 border border-transparent hover:border-gray-100 dark:hover:border-gray-700">
+                            <div
+                                class="flex-shrink-0 size-10 md:size-12 rounded-full bg-primary/20 flex items-center justify-center text-primary mb-2 md:mb-4">
+                                <span class="material-symbols-outlined text-lg md:text-2xl">mail</span>
+                            </div>
+                            <h4 class="font-bold text-xs md:text-lg dark:text-white mb-1 md:mb-2">Email Kami</h4>
+                            <p
+                                class="text-gray-500 dark:text-gray-400 text-[10px] md:text-sm leading-relaxed break-all md:break-normal">
+                                sales@asanna<wbr>village.com<br />info@asanna<wbr>village.com</p>
                         </div>
                     </div>
                 </div>
@@ -576,20 +932,14 @@
             class="border-t border-[#f0f4f0] dark:border-gray-800 bg-white dark:bg-background-dark py-8 px-6 lg:px-40">
             <div class="mx-auto max-w-[1200px] flex flex-col md:flex-row justify-between items-center gap-4">
                 <div class="flex items-center gap-2 text-[#111811] dark:text-white">
-                    <div class="size-6 text-primary">
-                        <svg fill="currentColor" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-                            <path clip-rule="evenodd"
-                                d="M39.475 21.6262C40.358 21.4363 40.6863 21.5589 40.7581 21.5934C40.7876 21.655 40.8547 21.857 40.8082 22.3336C40.7408 23.0255 40.4502 24.0046 39.8572 25.2301C38.6799 27.6631 36.5085 30.6631 33.5858 33.5858C30.6631 36.5085 27.6632 38.6799 25.2301 39.8572C24.0046 40.4502 23.0255 40.7407 22.3336 40.8082C21.8571 40.8547 21.6551 40.7875 21.5934 40.7581C21.5589 40.6863 21.4363 40.358 21.6262 39.475C21.8562 38.4054 22.4689 36.9657 23.5038 35.2817C24.7575 33.2417 26.5497 30.9744 28.7621 28.762C30.9744 26.5497 33.2417 24.7574 35.2817 23.5037C36.9657 22.4689 38.4054 21.8562 39.475 21.6262ZM4.41189 29.2403L18.7597 43.5881C19.8813 44.7097 21.4027 44.9179 22.7217 44.7893C24.0585 44.659 25.5148 44.1631 26.9723 43.4579C29.9052 42.0387 33.2618 39.5667 36.4142 36.4142C39.5667 33.2618 42.0387 29.9052 43.4579 26.9723C44.1631 25.5148 44.659 24.0585 44.7893 22.7217C44.9179 21.4027 44.7097 19.8813 43.5881 18.7597L29.2403 4.41187C27.8527 3.02428 25.8765 3.02573 24.2861 3.36776C22.6081 3.72863 20.7334 4.58419 18.8396 5.74801C16.4978 7.18716 13.9881 9.18353 11.5858 11.5858C9.18354 13.988 7.18717 16.4978 5.74802 18.8396C4.58421 20.7334 3.72865 22.6081 3.36778 24.2861C3.02574 25.8765 3.02429 27.8527 4.41189 29.2403Z"
-                                fill-rule="evenodd"></path>
-                        </svg>
-                    </div>
-                    <span class="font-bold">Asanna Village</span>
+                    <img src="images/ASSETS/LOGO%20ASANNA%20PNG.png" alt="Asanna Village Logo"
+                        class="h-20 w-auto object-contain brightness-0 dark:brightness-100 dark:invert scale-150 transform origin-center" />
                 </div>
                 <div class="flex gap-6">
                     <a class="text-sm text-gray-500 hover:text-primary transition-colors" href="#">Privacy Policy</a>
                     <a class="text-sm text-gray-500 hover:text-primary transition-colors" href="#">Terms of Service</a>
                 </div>
-                <p class="text-sm text-gray-500 dark:text-gray-400">© 2024 Asanna Village. Hak cipta dilindungi
+                <p class="text-sm text-gray-500 dark:text-gray-400">© 2026 Asanna Village. Hak cipta dilindungi
                     undang-undang.</p>
             </div>
         </footer>
@@ -618,5 +968,6 @@
     </div>
 
     <!-- Core Logic -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="js/app.js"></script>
 </body>
