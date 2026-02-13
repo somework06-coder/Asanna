@@ -79,47 +79,48 @@ function renderHouseCards() {
 }
 
 function createCardHTML(house) {
+  // Ultra-compact mobile styles for 2-column layout
   return `
-    <div class="bg-[#faf8f5] dark:bg-surface-dark p-4 lg:p-8 rounded-xl lg:rounded-2xl shadow-[0_10px_30px_-5px_rgba(0,0,0,0.1)] border border-[#eaddcf] dark:border-white/10 flex flex-col justify-between h-full group hover:shadow-lg transition-shadow duration-300">
+    <div class="bg-[#faf8f5] dark:bg-surface-dark p-3 lg:p-8 rounded-xl lg:rounded-3xl shadow-[0_5px_15px_-5px_rgba(0,0,0,0.1)] border border-[#eaddcf] dark:border-white/10 flex flex-col justify-between h-full group hover:shadow-xl transition-all duration-300">
         <div>
-            <h3 class="text-xs lg:text-2xl font-serif font-extrabold text-[#a0724f] dark:text-[#d4af37] mb-3 lg:mb-4 uppercase tracking-widest border-b border-[#eaddcf] pb-2">
+            <h3 class="text-[10px] lg:text-2xl font-serif font-extrabold text-[#a0724f] dark:text-[#d4af37] mb-2 lg:mb-4 uppercase tracking-widest border-b border-[#eaddcf] pb-1 lg:pb-3">
                 ${house.title}
             </h3>
-            <div class="grid grid-cols-2 gap-y-2 gap-x-2 text-[10px] lg:text-sm text-[#5a260b] dark:text-gray-300 mb-4 lg:mb-6 leading-tight font-bold">
-                <div class="flex items-center gap-1.5 lg:gap-2">
-                    <span class="material-symbols-outlined text-[#a0724f] text-[14px] lg:text-[20px] font-bold">bed</span>
+            <div class="grid grid-cols-2 gap-y-1 gap-x-1 lg:gap-y-3 lg:gap-x-4 text-[9px] lg:text-sm text-[#5a260b] dark:text-gray-300 mb-2 lg:mb-6 leading-tight font-medium">
+                <div class="flex items-center gap-1 lg:gap-2">
+                    <span class="material-symbols-outlined text-[#a0724f] text-[12px] lg:text-[20px] font-bold">bed</span>
                     <span>${house.specs.kt} KT</span>
                 </div>
-                <div class="flex items-center gap-1.5 lg:gap-2">
-                    <span class="material-symbols-outlined text-[#a0724f] text-[14px] lg:text-[20px] font-bold">bathtub</span>
+                <div class="flex items-center gap-1 lg:gap-2">
+                    <span class="material-symbols-outlined text-[#a0724f] text-[12px] lg:text-[20px] font-bold">bathtub</span>
                     <span>${house.specs.km} KM</span>
                 </div>
-                <div class="flex items-center gap-1.5 lg:gap-2">
-                    <span class="material-symbols-outlined text-[#a0724f] text-[14px] lg:text-[20px] font-bold">width_full</span>
+                <div class="flex items-center gap-1 lg:gap-2">
+                    <span class="material-symbols-outlined text-[#a0724f] text-[12px] lg:text-[20px] font-bold">width_full</span>
                     <span>LB ${house.specs.lb}</span>
                 </div>
-                <div class="flex items-center gap-1.5 lg:gap-2">
-                    <span class="material-symbols-outlined text-[#a0724f] text-[14px] lg:text-[20px] font-bold">crop_square</span>
+                <div class="flex items-center gap-1 lg:gap-2">
+                    <span class="material-symbols-outlined text-[#a0724f] text-[12px] lg:text-[20px] font-bold">crop_square</span>
                     <span>LT ${house.specs.lt}</span>
                 </div>
             </div>
         </div>
         
         <div class="mb-2 lg:mb-4 border-t border-[#eaddcf] pt-2 lg:pt-3">
-            <p class="text-[10px] lg:text-xs text-[#5a260b] mb-1 font-bold">Harga Mulai</p>
-            <p class="text-xl lg:text-2xl font-extrabold text-[#a0724f] dark:text-[#d4af37]">${house.price}</p>
+            <p class="text-[8px] lg:text-xs text-[#5a260b] mb-0.5 lg:mb-1 font-bold">Harga Mulai</p>
+            <p class="text-sm lg:text-2xl font-extrabold text-[#a0724f] dark:text-[#d4af37]">${house.price}</p>
         </div>
         
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-3 mt-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-2 lg:gap-3 mt-auto">
             <button onclick="openDenah('${house.id}')"
-                class="w-full py-2.5 lg:py-3.5 rounded-xl border border-[#a0724f]/30 text-[#8c6242] font-bold text-[10px] lg:text-xs uppercase tracking-widest hover:bg-[#faf4ef] hover:border-[#a0724f] transition-all flex items-center justify-center gap-2 group/denah">
-                <span class="material-symbols-outlined text-sm group-hover/denah:scale-110 transition-transform">grid_view</span>
+                class="w-full py-1.5 lg:py-3.5 rounded-lg lg:rounded-xl border border-[#a0724f]/30 text-[#8c6242] font-bold text-[8px] lg:text-xs uppercase tracking-widest hover:bg-[#faf4ef] hover:border-[#a0724f] transition-all flex items-center justify-center gap-1 group/denah">
+                <span class="material-symbols-outlined text-[10px] lg:text-sm group-hover/denah:scale-110 transition-transform">grid_view</span>
                 Lihat Denah
             </button>
             <a href="#contact"
-                class="w-full py-2.5 lg:py-3.5 rounded-xl bg-gradient-to-br from-[#a0724f] to-[#8c6242] text-white font-bold text-[10px] lg:text-xs uppercase tracking-widest hover:shadow-[0_10px_20px_-5px_rgba(160,114,79,0.4)] hover:-translate-y-0.5 transition-all shadow-md flex items-center justify-center gap-2 group/btn relative overflow-hidden">
+                class="w-full py-1.5 lg:py-3.5 rounded-lg lg:rounded-xl bg-gradient-to-br from-[#a0724f] to-[#8c6242] text-white font-bold text-[8px] lg:text-xs uppercase tracking-widest hover:shadow-[0_10px_20px_-5px_rgba(160,114,79,0.4)] hover:-translate-y-0.5 transition-all shadow-md flex items-center justify-center gap-1 group/btn relative overflow-hidden">
                 <span class="absolute inset-0 bg-white/20 translate-y-full group-hover/btn:translate-y-0 transition-transform duration-300"></span>
-                <span class="material-symbols-outlined text-sm relative z-10 group-hover/btn:rotate-12 transition-transform">description</span>
+                <span class="material-symbols-outlined text-[10px] lg:text-sm relative z-10 group-hover/btn:rotate-12 transition-transform">description</span>
                 <span class="relative z-10">Detail & Pricelist</span>
             </a>
         </div>
