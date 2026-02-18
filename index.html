@@ -33,41 +33,8 @@
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
         rel="stylesheet" />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#A0724F",
-                        "cta": "#5A260B",
-                        "background-light": "#F4EFE7",
-                        "background-dark": "#32160A",
-                        "surface-dark": "#3E2B22",
-                        "forest": "#5A260B",
-                        "sand": "#F4EFE7",
-                    },
-                    fontFamily: {
-                        "display": ["Manrope", "sans-serif"]
-                    },
-                    backgroundImage: {
-                        'hero-pattern': "linear-gradient(to bottom, rgba(16, 34, 16, 0.4), rgba(16, 34, 16, 0.6))",
-                    },
-                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px" },
-                    keyframes: {
-                        shimmer: {
-                            '0%': { transform: 'translateX(-100%)' },
-                            '100%': { transform: 'translateX(100%)' },
-                        }
-                    },
-                    animation: {
-                        shimmer: 'shimmer 3s infinite',
-                    }
-                },
-            },
-        }
-    </script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="./output.css" rel="stylesheet">
     <style>
         html {
             scroll-behavior: smooth;
@@ -281,7 +248,7 @@
             <section class="relative h-[90vh] min-h-[600px] flex items-center justify-center overflow-hidden" id="home">
                 <div id="hero-bg"
                     class="absolute inset-0 bg-cover bg-center transition-transform duration-100 ease-out will-change-transform scale-110"
-                    style="background-image: url('images/ASSETS/HEROIMage.jpg');">
+                    style="background-image: url('images/ASSETS/hero-optimized.webp');">
                 </div>
                 <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80"></div>
                 <div class="relative z-10 container mx-auto px-6 lg:px-10 text-center text-white">
@@ -334,12 +301,14 @@
                             </div>
                             <img alt="Keluarga berjalan di taman"
                                 class="relative rounded-2xl shadow-2xl w-full object-cover h-[500px]"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4tAwZ4tdGHo-rupjfGokLK83VMHRH9GbNKFahTlDLSitXJmair3vbHlTeQb1hen-3ag2Fnx5WKib8QjsVlIQkPXttnk_i2Q76BdP15VxwwWAzqywNbT77PDbJ3M2eYM7vQ6PUXwBKR7qCCW-irovHzXMeCTu9mYifcgv20gBRW47gt2-pbalquQvnXz6v_DDtPdQpYo-oGHb07qQpXNsij1Evo_KtiIfwkfyBzcKr1Q-2V9d-V3fioyBaTZbDxkG2mKBUahDBieM" />
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4tAwZ4tdGHo-rupjfGokLK83VMHRH9GbNKFahTlDLSitXJmair3vbHlTeQb1hen-3ag2Fnx5WKib8QjsVlIQkPXttnk_i2Q76BdP15VxwwWAzqywNbT77PDbJ3M2eYM7vQ6PUXwBKR7qCCW-irovHzXMeCTu9mYifcgv20gBRW47gt2-pbalquQvnXz6v_DDtPdQpYo-oGHb07qQpXNsij1Evo_KtiIfwkfyBzcKr1Q-2V9d-V3fioyBaTZbDxkG2mKBUahDBieM"
+                                loading="lazy" />
                             <div class="absolute bottom-8 right-8 bg-white dark:bg-gray-900 p-6 rounded-xl shadow-lg max-w-[200px] border-l-4 border-primary"
                                 data-aos="zoom-in" data-aos-delay="300">
-                                <p class="text-4xl font-bold text-primary mb-1">40%</p>
-                                <p class="text-sm font-semibold text-gray-600 dark:text-gray-300">Ruang Terbuka Hijau
-                                </p>
+                                <p class="text-3xl font-bold text-primary mb-1">Nature's</p>
+                                <p class="text-lg font-bold text-gray-800 dark:text-gray-200 leading-tight">Embrace</p>
+                                <p class="text-[10px] text-gray-500 mt-2 leading-relaxed">Hunian eksklusif yang menyatu
+                                    dengan alam. Kemewahan bertemu keasrian tropis.</p>
                             </div>
                         </div>
                         <div class="space-y-8" data-aos="fade-left">
@@ -401,7 +370,7 @@
                             <!-- Large Header Image -->
                             <div class="relative w-full rounded-3xl overflow-hidden shadow-xl group">
                                 <img src="images/ASSETS/2LANTAI%20CERAH.jpeg" alt="Pilihan 2 Lantai"
-                                    class="w-full h-auto object-contain" />
+                                    class="w-full h-auto object-contain" loading="lazy" />
                                 <div
                                     class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none">
                                 </div>
@@ -426,7 +395,7 @@
                             <!-- Large Header Image -->
                             <div class="relative w-full rounded-3xl overflow-hidden shadow-xl group">
                                 <img src="images/ASSETS/3LANTAI%20CERAH.jpeg" alt="Pilihan 3 Lantai"
-                                    class="w-full h-auto object-contain" />
+                                    class="w-full h-auto object-contain" loading="lazy" />
                                 <div
                                     class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none">
                                 </div>
@@ -470,7 +439,8 @@
                                     class="absolute inset-0 bg-[#a0724f]/10 rounded-3xl transform rotate-3 transition-transform duration-500 group-hover:rotate-6">
                                 </div>
                                 <img src="images/ASSETS/Gate/ASANNA_Gate_1_Edit 1.png" alt="Asanna Main Gate"
-                                    class="relative w-full h-[300px] lg:h-[450px] object-cover rounded-3xl shadow-2xl z-10 transition-transform duration-500 group-hover:-translate-y-2" />
+                                    class="relative w-full h-[300px] lg:h-[450px] object-cover rounded-3xl shadow-2xl z-10 transition-transform duration-500 group-hover:-translate-y-2"
+                                    loading="lazy" />
                             </div>
                             <div class="w-full lg:w-1/2" data-aos="fade-left">
                                 <div class="space-y-6">
@@ -541,7 +511,8 @@
                                     </div>
                                     <img src="images/ASSETS/Fasilitas/ASANNA_Club%20House_1.jpg"
                                         alt="Club House Exterior"
-                                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                        loading="lazy" />
                                     <div
                                         class="absolute bottom-3 left-3 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-lg shadow-sm">
                                         <p class="text-[10px] font-bold text-[#5a260b] uppercase tracking-wide">Exterior
@@ -557,7 +528,8 @@
                                     </div>
                                     <img src="images/ASSETS/Fasilitas/ASANNA_Club%20House_2_Edit%201.png"
                                         alt="Infinity Pool"
-                                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                        loading="lazy" />
                                     <div
                                         class="absolute bottom-3 left-3 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-lg shadow-sm">
                                         <p class="text-[10px] font-bold text-[#5a260b] uppercase tracking-wide">Infinity
