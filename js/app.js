@@ -360,7 +360,7 @@ document.addEventListener("DOMContentLoaded", () => {
           if (timeElapsed >= totalTime) {
             clearInterval(timer);
             // 4. Redirect to WhatsApp
-            window.open(waUrl, '_blank');
+            window.location.href = waUrl;
 
             // Close modal after redirect
             setTimeout(() => {
@@ -381,7 +381,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }, intervalTime);
       } else {
         // Fallback if modal missing
-        window.open(waUrl, '_blank');
+        window.location.href = waUrl;
         btn.innerHTML = originalText;
         btn.disabled = false;
       }
