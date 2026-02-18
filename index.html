@@ -827,128 +827,146 @@
                                             <input type="hidden" id="houseType" name="houseType" required>
 
                                             <!-- Trigger Button -->
-                                            <button type="button" id="dropdownTrigger"
-                                                class="w-full px-4 py-3 rounded-lg bg-white dark:bg-[#0c1a0c] border border-gray-200 dark:border-gray-700 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all dark:text-white flex items-center justify-between group text-left">
-                                                <span id="selectedOptionText" class="text-gray-400">Pilih Tipe
-                                                    Rumah</span>
-                                                <span
-                                                    class="material-symbols-outlined text-gray-500 group-hover:text-primary transition-colors transform duration-200"
-                                                    id="dropdownIcon">expand_more</span>
-                                            </button>
+                                            <button type="button" id="dropdownTrigger" <!-- Toggle Button -->
+                                                <button type="button"
+                                                    class="w-full px-4 py-3 md:py-4 rounded-xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900/50 text-left flex items-center justify-between group focus:ring-2 focus:ring-primary/50 transition-all"
+                                                    id="dropdownToggle">
+                                                    <span
+                                                        class="text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300"
+                                                        id="dropdownLabel">Pilih Tipe Rumah</span>
+                                                    <span
+                                                        class="material-symbols-outlined text-gray-400 transition-transform duration-300"
+                                                        id="dropdownIcon">expand_more</span>
+                                                </button>
 
-                                            <!-- Dropdown List -->
-                                            <div id="dropdownList"
-                                                class="absolute z-50 w-full mt-2 bg-white dark:bg-[#0c1a0c] border border-gray-200 dark:border-gray-700 rounded-xl shadow-xl hidden opacity-0 transform scale-95 transition-all duration-200 origin-top overflow-hidden max-h-60 overflow-y-auto">
-
-                                                <!-- 2 Lantai Group -->
-                                                <div
-                                                    class="px-4 py-2 bg-gray-50 dark:bg-gray-800/50 text-[10px] font-bold text-gray-400 uppercase tracking-widest border-b border-gray-100 dark:border-gray-800">
-                                                    2 Lantai Series
+                                                <!-- Dropdown Menu -->
+                                                <div class="absolute z-50 w-full mt-2 bg-white dark:bg-[#1a1a1a] border border-gray-100 dark:border-gray-800 rounded-xl shadow-xl opacity-0 invisible transform scale-95 transition-all duration-200 origin-top"
+                                                    id="dropdownList">
+                                                    <div class="p-1 max-h-60 overflow-y-auto scrollbar-hide space-y-1">
+                                                        <!-- Options -->
+                                                        <button type="button"
+                                                            class="dropdown-option w-full text-left px-3 py-2.5 rounded-lg hover:bg-[#faf4ef] dark:hover:bg-gray-800 transition-colors group/item"
+                                                            data-value="Ayana" data-text="Tipe Ayana">
+                                                            <div class="flex flex-col">
+                                                                <span
+                                                                    class="font-bold text-[#a0724f] dark:text-[#d4af37] text-sm group-hover/item:translate-x-1 transition-transform">Tipe
+                                                                    Ayana</span>
+                                                                <span
+                                                                    class="text-[11px] text-gray-500 font-medium mt-0.5 flex items-center gap-2">
+                                                                    <span class="flex items-center gap-1"><span
+                                                                            class="material-symbols-outlined text-[12px]">bed</span>
+                                                                        3+1</span>
+                                                                    <span
+                                                                        class="w-1 h-1 rounded-full bg-gray-300"></span>
+                                                                    <span class="flex items-center gap-1"><span
+                                                                            class="material-symbols-outlined text-[12px]">bathtub</span>
+                                                                        3</span>
+                                                                    <span
+                                                                        class="w-1 h-1 rounded-full bg-gray-300"></span>
+                                                                    <span>LB 88 / LT 84</span>
+                                                                </span>
+                                                            </div>
+                                                        </button>
+                                                        <button type="button"
+                                                            class="dropdown-option w-full text-left px-3 py-2.5 rounded-lg hover:bg-[#faf4ef] dark:hover:bg-gray-800 transition-colors group/item"
+                                                            data-value="Aleya" data-text="Tipe Aleya">
+                                                            <div class="flex flex-col">
+                                                                <span
+                                                                    class="font-bold text-[#a0724f] dark:text-[#d4af37] text-sm group-hover/item:translate-x-1 transition-transform">Tipe
+                                                                    Aleya</span>
+                                                                <span
+                                                                    class="text-[11px] text-gray-500 font-medium mt-0.5 flex items-center gap-2">
+                                                                    <span class="flex items-center gap-1"><span
+                                                                            class="material-symbols-outlined text-[12px]">bed</span>
+                                                                        3</span>
+                                                                    <span
+                                                                        class="w-1 h-1 rounded-full bg-gray-300"></span>
+                                                                    <span class="flex items-center gap-1"><span
+                                                                            class="material-symbols-outlined text-[12px]">bathtub</span>
+                                                                        2</span>
+                                                                    <span
+                                                                        class="w-1 h-1 rounded-full bg-gray-300"></span>
+                                                                    <span>LB 75 / LT 72</span>
+                                                                </span>
+                                                            </div>
+                                                        </button>
+                                                        <button type="button"
+                                                            class="dropdown-option w-full text-left px-3 py-2.5 rounded-lg hover:bg-[#faf4ef] dark:hover:bg-gray-800 transition-colors group/item"
+                                                            data-value="Aleena" data-text="Tipe Aleena">
+                                                            <div class="flex flex-col">
+                                                                <span
+                                                                    class="font-bold text-[#a0724f] dark:text-[#d4af37] text-sm group-hover/item:translate-x-1 transition-transform">Tipe
+                                                                    Aleena</span>
+                                                                <span
+                                                                    class="text-[11px] text-gray-500 font-medium mt-0.5 flex items-center gap-2">
+                                                                    <span class="flex items-center gap-1"><span
+                                                                            class="material-symbols-outlined text-[12px]">bed</span>
+                                                                        3</span>
+                                                                    <span
+                                                                        class="w-1 h-1 rounded-full bg-gray-300"></span>
+                                                                    <span class="flex items-center gap-1"><span
+                                                                            class="material-symbols-outlined text-[12px]">bathtub</span>
+                                                                        3</span>
+                                                                    <span
+                                                                        class="w-1 h-1 rounded-full bg-gray-300"></span>
+                                                                    <span>LB 88 / LT 84</span>
+                                                                </span>
+                                                            </div>
+                                                        </button>
+                                                        <button type="button"
+                                                            class="dropdown-option w-full text-left px-3 py-2.5 rounded-lg hover:bg-[#faf4ef] dark:hover:bg-gray-800 transition-colors group/item"
+                                                            data-value="Alunna" data-text="Tipe Alunna">
+                                                            <div class="flex flex-col">
+                                                                <span
+                                                                    class="font-bold text-[#a0724f] dark:text-[#d4af37] text-sm group-hover/item:translate-x-1 transition-transform">Tipe
+                                                                    Alunna</span>
+                                                                <span
+                                                                    class="text-[11px] text-gray-500 font-medium mt-0.5 flex items-center gap-2">
+                                                                    <span class="flex items-center gap-1"><span
+                                                                            class="material-symbols-outlined text-[12px]">bed</span>
+                                                                        2</span>
+                                                                    <span
+                                                                        class="w-1 h-1 rounded-full bg-gray-300"></span>
+                                                                    <span class="flex items-center gap-1"><span
+                                                                            class="material-symbols-outlined text-[12px]">bathtub</span>
+                                                                        2</span>
+                                                                    <span
+                                                                        class="w-1 h-1 rounded-full bg-gray-300"></span>
+                                                                    <span>LB 65 / LT 60</span>
+                                                                </span>
+                                                            </div>
+                                                        </button>
+                                                    </div>
                                                 </div>
-                                                <div class="p-1">
-                                                    <button type="button"
-                                                        class="dropdown-option w-full text-left px-3 py-2.5 rounded-lg hover:bg-[#faf4ef] dark:hover:bg-gray-800 transition-colors group/item"
-                                                        data-value="Ayana" data-text="Tipe Ayana">
-                                                        <div class="flex flex-col">
-                                                            <span
-                                                                class="font-bold text-[#a0724f] dark:text-[#d4af37] text-sm group-hover/item:translate-x-1 transition-transform">Tipe
-                                                                Ayana</span>
-                                                            <span
-                                                                class="text-[11px] text-gray-500 font-medium mt-0.5 flex items-center gap-2">
-                                                                <span class="flex items-center gap-1"><span
-                                                                        class="material-symbols-outlined text-[12px]">bed</span>
-                                                                    3+1</span>
-                                                                <span class="w-1 h-1 rounded-full bg-gray-300"></span>
-                                                                <span class="flex items-center gap-1"><span
-                                                                        class="material-symbols-outlined text-[12px]">bathtub</span>
-                                                                    3</span>
-                                                                <span class="w-1 h-1 rounded-full bg-gray-300"></span>
-                                                                <span>LB 88 / LT 84</span>
-                                                            </span>
-                                                        </div>
-                                                    </button>
-                                                    <button type="button"
-                                                        class="dropdown-option w-full text-left px-3 py-2.5 rounded-lg hover:bg-[#faf4ef] dark:hover:bg-gray-800 transition-colors group/item"
-                                                        data-value="Aleya" data-text="Tipe Aleya">
-                                                        <div class="flex flex-col">
-                                                            <span
-                                                                class="font-bold text-[#a0724f] dark:text-[#d4af37] text-sm group-hover/item:translate-x-1 transition-transform">Tipe
-                                                                Aleya</span>
-                                                            <span
-                                                                class="text-[11px] text-gray-500 font-medium mt-0.5 flex items-center gap-2">
-                                                                <span class="flex items-center gap-1"><span
-                                                                        class="material-symbols-outlined text-[12px]">bed</span>
-                                                                    3</span>
-                                                                <span class="w-1 h-1 rounded-full bg-gray-300"></span>
-                                                                <span class="flex items-center gap-1"><span
-                                                                        class="material-symbols-outlined text-[12px]">bathtub</span>
-                                                                    2</span>
-                                                                <span class="w-1 h-1 rounded-full bg-gray-300"></span>
-                                                                <span>LB 65 / LT 60</span>
-                                                            </span>
-                                                        </div>
-                                                    </button>
-                                                </div>
-
-                                                <!-- 3 Lantai Group -->
-                                                <div
-                                                    class="px-4 py-2 bg-gray-50 dark:bg-gray-800/50 text-[10px] font-bold text-gray-400 uppercase tracking-widest border-y border-gray-100 dark:border-gray-800">
-                                                    3 Lantai Series
-                                                </div>
-                                                <div class="p-1">
-                                                    <button type="button"
-                                                        class="dropdown-option w-full text-left px-3 py-2.5 rounded-lg hover:bg-[#faf4ef] dark:hover:bg-gray-800 transition-colors group/item"
-                                                        data-value="Aleena" data-text="Tipe Aleena">
-                                                        <div class="flex flex-col">
-                                                            <span
-                                                                class="font-bold text-[#a0724f] dark:text-[#d4af37] text-sm group-hover/item:translate-x-1 transition-transform">Tipe
-                                                                Aleena</span>
-                                                            <span
-                                                                class="text-[11px] text-gray-500 font-medium mt-0.5 flex items-center gap-2">
-                                                                <span class="flex items-center gap-1"><span
-                                                                        class="material-symbols-outlined text-[12px]">bed</span>
-                                                                    3</span>
-                                                                <span class="w-1 h-1 rounded-full bg-gray-300"></span>
-                                                                <span class="flex items-center gap-1"><span
-                                                                        class="material-symbols-outlined text-[12px]">bathtub</span>
-                                                                    3</span>
-                                                                <span class="w-1 h-1 rounded-full bg-gray-300"></span>
-                                                                <span>LB 88 / LT 84</span>
-                                                            </span>
-                                                        </div>
-                                                    </button>
-                                                    <button type="button"
-                                                        class="dropdown-option w-full text-left px-3 py-2.5 rounded-lg hover:bg-[#faf4ef] dark:hover:bg-gray-800 transition-colors group/item"
-                                                        data-value="Alunna" data-text="Tipe Alunna">
-                                                        <div class="flex flex-col">
-                                                            <span
-                                                                class="font-bold text-[#a0724f] dark:text-[#d4af37] text-sm group-hover/item:translate-x-1 transition-transform">Tipe
-                                                                Alunna</span>
-                                                            <span
-                                                                class="text-[11px] text-gray-500 font-medium mt-0.5 flex items-center gap-2">
-                                                                <span class="flex items-center gap-1"><span
-                                                                        class="material-symbols-outlined text-[12px]">bed</span>
-                                                                    2</span>
-                                                                <span class="w-1 h-1 rounded-full bg-gray-300"></span>
-                                                                <span class="flex items-center gap-1"><span
-                                                                        class="material-symbols-outlined text-[12px]">bathtub</span>
-                                                                    2</span>
-                                                                <span class="w-1 h-1 rounded-full bg-gray-300"></span>
-                                                                <span>LB 65 / LT 60</span>
-                                                            </span>
-                                                        </div>
-                                                    </button>
-                                                </div>
-                                            </div>
                                         </div>
                                     </div>
+                                    <button
+                                        class="w-full py-4 mt-2 bg-cta hover:bg-cta/90 text-white font-bold rounded-lg transition-colors shadow-lg shadow-cta/30 flex items-center justify-center gap-2"
+                                        type="submit">
+                                        Kirim Pesan
+                                        <span class="material-symbols-outlined text-lg">arrow_forward</span>
+                                    </button>
                                 </div>
-                                <button
-                                    class="w-full py-4 mt-2 bg-cta hover:bg-cta/90 text-white font-bold rounded-lg transition-colors shadow-lg shadow-cta/30 flex items-center justify-center gap-2"
-                                    type="submit">
-                                    Kirim Pesan
-                                    <span class="material-symbols-outlined text-lg">arrow_forward</span>
-                                </button>
+
+                                <!-- State 2: Success Message (Hidden by default) -->
+                                <div id="formSuccess"
+                                    class="hidden absolute inset-0 flex flex-col items-center justify-center text-center p-6 bg-white dark:bg-surface-dark rounded-xl z-10 animate-fade-in opacity-0 transition-opacity duration-300">
+                                    <div
+                                        class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4">
+                                        <span
+                                            class="material-symbols-outlined text-4xl text-green-600">check_circle</span>
+                                    </div>
+                                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Pesan Terkirim!
+                                    </h3>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400 mb-6">
+                                        Silakan klik tombol di bawah untuk melanjutkan chat via WhatsApp.
+                                    </p>
+                                    <a id="waLinkBtn" href="#" target="_blank"
+                                        class="w-full py-3 bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold rounded-lg transition-colors flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 duration-200">
+                                        <span class="material-symbols-outlined">chat</span>
+                                        Buka WhatsApp
+                                    </a>
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -1021,31 +1039,6 @@
                 <h3 id="denahTitle" class="text-xl font-serif font-extrabold text-[#a0724f] mb-1">Denah Tipe</h3>
                 <p class="text-xs lg:text-sm text-gray-600">Layout yang dirancang untuk kenyamanan maksimal.</p>
             </div>
-        </div>
-    </div>
-
-    <!-- Thank You Modal (Pixel Trigger) -->
-    <div id="thankYouModal"
-        class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/80 backdrop-blur-sm p-4 opacity-0 transition-opacity duration-300">
-        <div class="relative w-full max-w-sm bg-white dark:bg-surface-dark rounded-2xl overflow-hidden shadow-2xl transform scale-95 transition-transform duration-300 mx-auto p-6 text-center"
-            id="thankYouContent">
-            <div class="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span class="material-symbols-outlined text-3xl text-primary">check_circle</span>
-            </div>
-            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">Terima Kasih!</h3>
-            <p class="text-gray-600 dark:text-gray-300 mb-6">Data Anda telah kami terima. Anda akan segera dialihkan ke
-                WhatsApp untuk chat dengan tim sales kami.</p>
-            <div class="w-full bg-gray-200 rounded-full h-1.5 mb-2 overflow-hidden">
-                <div class="bg-primary h-1.5 rounded-full" id="progressBar"
-                    style="width: 0%; transition: width 0.1s linear;"></div>
-            </div>
-            <p class="text-xs text-gray-400 mt-2">Mengalihkan dalam <span id="countdown">3</span> detik...</p>
-
-            <!-- Manual Button (Fail-safe) -->
-            <a id="manualWaLink" href="#"
-                class="hidden w-full py-3 bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold rounded-lg transition-colors flex items-center justify-center gap-2 mt-4 shadow-lg active:scale-95 transform duration-100">
-                <span class="material-symbols-outlined">chat</span> Buka WhatsApp Sekarang
-            </a>
         </div>
     </div>
 
