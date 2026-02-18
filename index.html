@@ -5,6 +5,26 @@
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Asanna Village - Website Hunian Resmi</title>
+    <!-- Meta Pixel Code -->
+    <script>
+        !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return; n = f.fbq = function () {
+                n.callMethod ?
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+            n.queue = []; t = b.createElement(e); t.async = !0;
+            t.src = v; s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '224407712879685');
+        fbq('track', 'PageView');
+        fbq('trackCustom', 'Page View AV');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+            src="https://www.facebook.com/tr?id=224407712879685&ev=PageView&noscript=1" /></noscript>
+    <!-- End Meta Pixel Code -->
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap"
@@ -35,6 +55,15 @@
                         'hero-pattern': "linear-gradient(to bottom, rgba(16, 34, 16, 0.4), rgba(16, 34, 16, 0.6))",
                     },
                     borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px" },
+                    keyframes: {
+                        shimmer: {
+                            '0%': { transform: 'translateX(-100%)' },
+                            '100%': { transform: 'translateX(100%)' },
+                        }
+                    },
+                    animation: {
+                        shimmer: 'shimmer 3s infinite',
+                    }
                 },
             },
         }
@@ -250,7 +279,8 @@
         </header>
         <main class="flex-1 w-full">
             <section class="relative h-[90vh] min-h-[600px] flex items-center justify-center overflow-hidden" id="home">
-                <div class="absolute inset-0 bg-cover bg-center"
+                <div id="hero-bg"
+                    class="absolute inset-0 bg-cover bg-center transition-transform duration-100 ease-out will-change-transform scale-110"
                     style="background-image: url('images/ASSETS/HEROIMage.jpg');">
                 </div>
                 <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80"></div>
@@ -277,8 +307,10 @@
                     </p>
                     <div class="flex flex-row gap-3 justify-center items-center flex-wrap sm:flex-nowrap"
                         data-aos="fade-up" data-aos-delay="800">
-                        <a class="w-auto px-5 py-3 lg:px-8 lg:py-4 bg-cta text-white text-xs sm:text-sm lg:text-base font-bold rounded-lg hover:bg-cta/90 transition-all shadow-lg shadow-cta/30 text-center whitespace-nowrap"
+                        <a class="relative group/btn overflow-hidden w-auto px-5 py-3 lg:px-8 lg:py-4 bg-cta text-white text-xs sm:text-sm lg:text-base font-bold rounded-lg hover:bg-cta/90 transition-all shadow-lg shadow-cta/30 text-center whitespace-nowrap"
                             href="#living">
+                            <span
+                                class="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full animate-shimmer"></span>
                             Lihat Hunian
                         </a>
                         <a class="w-auto px-5 py-3 lg:px-8 lg:py-4 bg-white/10 backdrop-blur-md border border-white/30 text-white text-xs sm:text-sm lg:text-base font-bold rounded-lg hover:bg-white/20 transition-all text-center whitespace-nowrap"
@@ -569,12 +601,13 @@
                                             </span>
                                         </div>
                                     </div>
-                                    <a href="https://www.google.com/maps/search/?api=1&query=-6.336190,106.712098"
+                                    <a href="https://www.google.com/maps/search/?api=1&query=Jl.+Inpres,+Benda+Baru,+Kec.+Pamulang,+Kota+Tangerang+Selatan,+Banten+15415"
                                         target="_blank"
                                         class="absolute bottom-4 left-4 right-4 bg-white/95 dark:bg-gray-900/95 backdrop-blur rounded-lg p-4 shadow-md lg:max-w-xs hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors block group/card">
                                         <h3 class="font-bold text-sm group-hover/card:text-primary transition-colors">
                                             Asanna Village</h3>
-                                        <p class="text-xs text-gray-500">Jl. Raya Puspitek, Pamulang, Tangerang Selatan
+                                        <p class="text-xs text-gray-500">Jl. Inpres, Benda Baru, Kec. Pamulang, Kota
+                                            Tangerang Selatan, Banten 15415
                                         </p>
                                         <div class="mt-2 text-[10px] text-primary font-bold flex items-center gap-1">
                                             LIHAT DI MAPS <span
@@ -893,7 +926,7 @@
                     </div>
 
                     <!-- Contact Info Cards (Grid) -->
-                    <div class="grid grid-cols-3 gap-2 md:gap-6 max-w-6xl mx-auto w-full" data-aos="fade-up"
+                    <div class="grid grid-cols-2 gap-3 md:gap-8 max-w-2xl mx-auto w-full" data-aos="fade-up"
                         data-aos-delay="400">
                         <!-- Visit Us -->
                         <div
@@ -903,9 +936,8 @@
                                 <span class="material-symbols-outlined text-lg md:text-2xl">location_on</span>
                             </div>
                             <h4 class="font-bold text-xs md:text-lg dark:text-white mb-1 md:mb-2">Kunjungi Kami</h4>
-                            <p class="text-gray-500 dark:text-gray-400 text-[10px] md:text-sm leading-relaxed">Jl. Green
-                                Valley No.
-                                123,<br />Kota Metropolis, 54321</p>
+                            <p class="text-gray-500 dark:text-gray-400 text-[10px] md:text-sm leading-relaxed">Jl.
+                                Inpres, Benda Baru,<br />Kec. Pamulang, Kota Tangerang Selatan,<br />Banten 15415</p>
                         </div>
 
                         <!-- Call Us -->
@@ -921,18 +953,7 @@
                                 1234<br />Sen-Sab, 9:00 - 18:00</p>
                         </div>
 
-                        <!-- Email Us -->
-                        <div
-                            class="flex flex-col items-center text-center p-3 md:p-6 rounded-2xl bg-gray-50 dark:bg-gray-800/50 hover:bg-white dark:hover:bg-gray-800 hover:shadow-lg transition-all duration-300 border border-transparent hover:border-gray-100 dark:hover:border-gray-700">
-                            <div
-                                class="flex-shrink-0 size-10 md:size-12 rounded-full bg-primary/20 flex items-center justify-center text-primary mb-2 md:mb-4">
-                                <span class="material-symbols-outlined text-lg md:text-2xl">mail</span>
-                            </div>
-                            <h4 class="font-bold text-xs md:text-lg dark:text-white mb-1 md:mb-2">Email Kami</h4>
-                            <p
-                                class="text-gray-500 dark:text-gray-400 text-[10px] md:text-sm leading-relaxed break-all md:break-normal">
-                                sales@asanna<wbr>village.com<br />info@asanna<wbr>village.com</p>
-                        </div>
+
                     </div>
                 </div>
             </section>
@@ -973,6 +994,25 @@
                 <h3 id="denahTitle" class="text-xl font-serif font-extrabold text-[#a0724f] mb-1">Denah Tipe</h3>
                 <p class="text-xs lg:text-sm text-gray-600">Layout yang dirancang untuk kenyamanan maksimal.</p>
             </div>
+        </div>
+    </div>
+
+    <!-- Thank You Modal (Pixel Trigger) -->
+    <div id="thankYouModal"
+        class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/80 backdrop-blur-sm p-4 opacity-0 transition-opacity duration-300">
+        <div class="relative w-full max-w-sm bg-white dark:bg-surface-dark rounded-2xl overflow-hidden shadow-2xl transform scale-95 transition-transform duration-300 mx-auto p-6 text-center"
+            id="thankYouContent">
+            <div class="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span class="material-symbols-outlined text-3xl text-primary">check_circle</span>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">Terima Kasih!</h3>
+            <p class="text-gray-600 dark:text-gray-300 mb-6">Data Anda telah kami terima. Anda akan segera dialihkan ke
+                WhatsApp untuk chat dengan tim sales kami.</p>
+            <div class="w-full bg-gray-200 rounded-full h-1.5 mb-2 overflow-hidden">
+                <div class="bg-primary h-1.5 rounded-full" id="progressBar"
+                    style="width: 0%; transition: width 0.1s linear;"></div>
+            </div>
+            <p class="text-xs text-gray-400 mt-2">Mengalihkan dalam <span id="countdown">3</span> detik...</p>
         </div>
     </div>
 

@@ -120,6 +120,7 @@ function createCardHTML(house) {
             <a href="#contact"
                 class="w-full py-1.5 lg:py-3.5 rounded-lg lg:rounded-xl bg-gradient-to-br from-[#a0724f] to-[#8c6242] text-white font-bold text-[8px] lg:text-xs uppercase tracking-widest hover:shadow-[0_10px_20px_-5px_rgba(160,114,79,0.4)] hover:-translate-y-0.5 transition-all shadow-md flex items-center justify-center gap-1 group/btn relative overflow-hidden">
                 <span class="absolute inset-0 bg-white/20 translate-y-full group-hover/btn:translate-y-0 transition-transform duration-300"></span>
+                <span class="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full animate-shimmer"></span>
                 <span class="material-symbols-outlined text-[10px] lg:text-sm relative z-10 group-hover/btn:rotate-12 transition-transform">description</span>
                 <span class="relative z-10">Detail & Pricelist</span>
             </a>
@@ -308,7 +309,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // --- KONFIGURASI NOMOR TUJUAN ---
       // Ganti nomor ini dengan nomor WhatsApp tim sales Asanna Village (format: 628...)
-      const destinationNumber = "6281200000000";
+      const destinationNumber = "6281181150666";
 
       const message = `Halo, saya ${name}. Saya ingin melihat detail rumah Tipe ${houseType} dari Asanna Village.`;
       const encodedMessage = encodeURIComponent(message);
@@ -318,15 +319,72 @@ document.addEventListener("DOMContentLoaded", () => {
       btn.innerHTML = "Membuka WhatsApp...";
       btn.disabled = true;
 
-      // Open WhatsApp in new tab
-      window.open(waUrl, '_blank');
+      // --- PIXEL TRACKING & MODAL LOGIC ---
 
-      // Reset button state after a short delay
-      setTimeout(() => {
+      // 1. Fire Pixel Event
+      if (typeof fbq === 'function') {
+        fbq('trackCustom', 'Lead AV');
+      }
+
+      // 2. Show Thank You Modal
+      const thankYouModal = document.getElementById('thankYouModal');
+      const thankYouContent = document.getElementById('thankYouContent');
+      const progressBar = document.getElementById('progressBar');
+      const countdownSpan = document.getElementById('countdown');
+
+      if (thankYouModal && thankYouContent) {
+        thankYouModal.classList.remove('hidden');
+        // Animation params
+        setTimeout(() => {
+          thankYouModal.classList.remove('opacity-0');
+          thankYouContent.classList.remove('scale-95');
+          thankYouContent.classList.add('scale-100');
+        }, 10);
+
+        // 3. Countdown & Progress Bar
+        let secondsLeft = 3;
+        const totalTime = 3000;
+        const intervalTime = 100;
+        let timeElapsed = 0;
+
+        const timer = setInterval(() => {
+          timeElapsed += intervalTime;
+          const progress = (timeElapsed / totalTime) * 100;
+          progressBar.style.width = `${Math.min(progress, 100)}%`;
+
+          if (timeElapsed % 1000 === 0) {
+            secondsLeft--;
+            countdownSpan.innerText = secondsLeft;
+          }
+
+          if (timeElapsed >= totalTime) {
+            clearInterval(timer);
+            // 4. Redirect to WhatsApp
+            window.open(waUrl, '_blank');
+
+            // Close modal after redirect
+            setTimeout(() => {
+              thankYouModal.classList.add('opacity-0');
+              thankYouContent.classList.remove('scale-100');
+              thankYouContent.classList.add('scale-95');
+              setTimeout(() => {
+                thankYouModal.classList.add('hidden');
+                // Reset form
+                form.reset();
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+                progressBar.style.width = '0%';
+                countdownSpan.innerText = '3';
+              }, 300);
+            }, 1000);
+          }
+        }, intervalTime);
+      } else {
+        // Fallback if modal missing
+        window.open(waUrl, '_blank');
         btn.innerHTML = originalText;
         btn.disabled = false;
-        // Optional: this.reset(); if you want to clear the form
-      }, 2000);
+      }
     });
   }
 
@@ -431,3 +489,21 @@ function closeMobileMenu() {
     document.body.style.overflow = 'auto'; // Restore scrolling
   }
 }
+
+/* -------------------------------------------------------------------------- */
+/*                            PARALLAX & WOW EFFECT                           */
+/* -------------------------------------------------------------------------- */
+
+document.addEventListener("scroll", () => {
+  const heroBg = document.getElementById("hero-bg");
+  const scrollY = window.scrollY;
+
+  if (heroBg && scrollY < window.innerHeight) {
+    // Parallax effect: Move background slower than scroll
+    // Scale effect: Zoom out slowly as user scrolls down
+    const scaleValue = 1.1 + (scrollY * 0.0005);
+    const translateY = scrollY * 0.5;
+
+    heroBg.style.transform = `translate3d(0, ${translateY}px, 0) scale(${scaleValue})`;
+  }
+});
