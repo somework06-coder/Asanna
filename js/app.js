@@ -307,63 +307,81 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      // --- NEW LOGIC: IN-PLACE SUCCESS STATE ---
+      // --- KONFIGURASI NOMOR TUJUAN ---
+      // Ganti nomor ini dengan nomor WhatsApp tim sales Asanna Village (format: 628...)
+      const destinationNumber = "6281181150666";
+
+      const message = `Halo, saya ${name}. Saya ingin melihat detail rumah Tipe ${houseType} dari Asanna Village.`;
+      const encodedMessage = encodeURIComponent(message);
+      const waUrl = `https://wa.me/${destinationNumber}?text=${encodedMessage}`;
 
       const originalText = btn.innerHTML;
-
-      // 1. Show Loading State
-      btn.innerHTML = `<span class="material-symbols-outlined animate-spin text-lg">sync</span> Mengirim...`;
+      btn.innerHTML = "Membuka WhatsApp...";
       btn.disabled = true;
-      btn.classList.add('cursor-not-allowed', 'opacity-75');
 
-      // 2. Simulate Network Request (2 seconds)
-      setTimeout(() => {
-        const formInputs = document.getElementById("formInputs");
-        const formSuccess = document.getElementById("formSuccess");
-        const waLinkBtn = document.getElementById("waLinkBtn");
+      // --- PIXEL TRACKING ---
+      if (typeof fbq === 'function') {
+        fbq('trackCustom', 'Lead AV');
+      }
 
-        // Construct WhatsApp URL
-        const destinationNumber = "6281181150666"; // Sales Number
-        const message = `Halo, saya ${name}. Saya ingin melihat detail rumah Tipe ${houseType} dari Asanna Village.`;
-        const waUrl = `https://wa.me/${destinationNumber}?text=${encodeURIComponent(message)}`;
+      // --- CRITICAL: Open WhatsApp IMMEDIATELY (synchronous in click handler) ---
+      // Mobile browsers BLOCK navigation inside setTimeout/setInterval.
+      // This MUST be called synchronously in the click handler to be trusted.
+      window.open(waUrl, '_blank');
 
-        // Set Manual Button Link
-        if (waLinkBtn) {
-          waLinkBtn.href = waUrl;
-        }
+      // --- Show Thank You Modal (cosmetic only, no redirect needed) ---
+      const thankYouModal = document.getElementById('thankYouModal');
+      const thankYouContent = document.getElementById('thankYouContent');
+      const progressBar = document.getElementById('progressBar');
+      const countdownSpan = document.getElementById('countdown');
 
-        // 3. Fire Pixel Event
-        if (typeof fbq === 'function') {
-          fbq('track', 'Lead', {
-            content_name: houseType,
-            content_category: 'Asanna Village'
-          });
-          // Also fire custom event if preferred
-          fbq('trackCustom', 'Lead AV');
-        }
+      if (thankYouModal && thankYouContent) {
+        thankYouModal.classList.remove('hidden');
+        setTimeout(() => {
+          thankYouModal.classList.remove('opacity-0');
+          thankYouContent.classList.remove('scale-95');
+          thankYouContent.classList.add('scale-100');
+        }, 10);
 
-        // 4. Toggle UI State (Inputs -> Success)
-        if (formInputs && formSuccess) {
-          // Fade out inputs
-          formInputs.classList.add('opacity-0', '-translate-y-2');
+        // Auto-close modal after 3 seconds
+        let secondsLeft = 3;
+        const totalTime = 3000;
+        const intervalTime = 100;
+        let timeElapsed = 0;
 
-          setTimeout(() => {
-            formInputs.classList.add('hidden');
-            formSuccess.classList.remove('hidden');
+        const timer = setInterval(() => {
+          timeElapsed += intervalTime;
+          const progress = (timeElapsed / totalTime) * 100;
+          progressBar.style.width = `${Math.min(progress, 100)}%`;
 
-            // Trigger reflow/animation
-            requestAnimationFrame(() => {
-              formSuccess.classList.remove('opacity-0');
-            });
-          }, 300); // Wait for transition
-        } else {
-          // Fallback if UI elements missing
-          window.location.href = waUrl;
+          if (timeElapsed % 1000 === 0) {
+            secondsLeft--;
+            countdownSpan.innerText = secondsLeft;
+          }
+
+          if (timeElapsed >= totalTime) {
+            clearInterval(timer);
+            // Close modal & reset form
+            thankYouModal.classList.add('opacity-0');
+            thankYouContent.classList.remove('scale-100');
+            thankYouContent.classList.add('scale-95');
+            setTimeout(() => {
+              thankYouModal.classList.add('hidden');
+              form.reset();
+              btn.innerHTML = originalText;
+              btn.disabled = false;
+              progressBar.style.width = '0%';
+              countdownSpan.innerText = '3';
+            }, 300);
+          }
+        }, intervalTime);
+      } else {
+        // Fallback: just reset the button
+        setTimeout(() => {
           btn.innerHTML = originalText;
           btn.disabled = false;
-        }
-
-      }, 2000);
+        }, 1000);
+      }
     });
   }
 
