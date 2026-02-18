@@ -319,17 +319,12 @@ document.addEventListener("DOMContentLoaded", () => {
       btn.innerHTML = "Membuka WhatsApp...";
       btn.disabled = true;
 
-      // --- PIXEL TRACKING ---
+      // 1. Fire Pixel Event (sebelum redirect)
       if (typeof fbq === 'function') {
         fbq('trackCustom', 'Lead AV');
       }
 
-      // --- CRITICAL: Open WhatsApp IMMEDIATELY (synchronous in click handler) ---
-      // Mobile browsers BLOCK navigation inside setTimeout/setInterval.
-      // This MUST be called synchronously in the click handler to be trusted.
-      window.open(waUrl, '_blank');
-
-      // --- Show Thank You Modal (cosmetic only, no redirect needed) ---
+      // 2. Show Thank You Modal
       const thankYouModal = document.getElementById('thankYouModal');
       const thankYouContent = document.getElementById('thankYouContent');
       const progressBar = document.getElementById('progressBar');
@@ -343,44 +338,30 @@ document.addEventListener("DOMContentLoaded", () => {
           thankYouContent.classList.add('scale-100');
         }, 10);
 
-        // Auto-close modal after 3 seconds
-        let secondsLeft = 3;
-        const totalTime = 3000;
-        const intervalTime = 100;
+        // Progress bar animation (cosmetic)
         let timeElapsed = 0;
+        const totalTime = 2000;
+        const intervalTime = 50;
 
-        const timer = setInterval(() => {
+        const progressTimer = setInterval(() => {
           timeElapsed += intervalTime;
           const progress = (timeElapsed / totalTime) * 100;
           progressBar.style.width = `${Math.min(progress, 100)}%`;
 
-          if (timeElapsed % 1000 === 0) {
-            secondsLeft--;
-            countdownSpan.innerText = secondsLeft;
-          }
-
           if (timeElapsed >= totalTime) {
-            clearInterval(timer);
-            // Close modal & reset form
-            thankYouModal.classList.add('opacity-0');
-            thankYouContent.classList.remove('scale-100');
-            thankYouContent.classList.add('scale-95');
-            setTimeout(() => {
-              thankYouModal.classList.add('hidden');
-              form.reset();
-              btn.innerHTML = originalText;
-              btn.disabled = false;
-              progressBar.style.width = '0%';
-              countdownSpan.innerText = '3';
-            }, 300);
+            clearInterval(progressTimer);
           }
         }, intervalTime);
-      } else {
-        // Fallback: just reset the button
+
+        // 3. Redirect ke WhatsApp setelah 2 detik (sama seperti TanaRuma)
+        // window.location.href = navigasi halaman biasa, TIDAK diblokir mobile browser
         setTimeout(() => {
-          btn.innerHTML = originalText;
-          btn.disabled = false;
-        }, 1000);
+          window.location.href = waUrl;
+        }, 2000);
+
+      } else {
+        // Fallback: langsung redirect tanpa modal
+        window.location.href = waUrl;
       }
     });
   }
