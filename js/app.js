@@ -331,6 +331,14 @@ document.addEventListener("DOMContentLoaded", () => {
       const thankYouContent = document.getElementById('thankYouContent');
       const progressBar = document.getElementById('progressBar');
       const countdownSpan = document.getElementById('countdown');
+      const manualWaLink = document.getElementById('manualWaLink');
+
+      // Setup Manual Link
+      if (manualWaLink) {
+        manualWaLink.href = waUrl;
+        // Show button immediately as backup
+        manualWaLink.classList.remove('hidden');
+      }
 
       if (thankYouModal && thankYouContent) {
         thankYouModal.classList.remove('hidden');
