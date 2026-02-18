@@ -323,10 +323,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // 1. Fire Pixel Event
       if (typeof fbq === 'function') {
-        fbq('track', 'Lead', {
-          content_name: selectedHouseType || 'General Inquiry',
-          content_category: 'Asanna Village'
-        });
+        fbq('trackCustom', 'Lead AV');
       }
 
       // 2. Show Thank You Modal
