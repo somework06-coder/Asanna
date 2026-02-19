@@ -294,71 +294,62 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const form = document.getElementById("inquireForm");
   if (form) {
+    // Get TanaRuma-style elements
+    const formStep = document.getElementById('formStep');
+    const formSuccess = document.getElementById('formSuccess');
+    const loadingSpinner = document.getElementById('loadingSpinner');
+
     form.addEventListener("submit", function (e) {
+      // STEP 1: Cegah form reload
       e.preventDefault();
 
+      // STEP 2: Ambil data input
       const name = document.getElementById("name").value.trim();
       const whatsapp = document.getElementById("whatsapp").value.trim();
       const houseType = document.getElementById("houseType").value;
-      const btn = this.querySelector('button[type="submit"]');
 
+      // STEP 3: Validasi
       if (!name || !whatsapp || !houseType) {
         alert("Mohon lengkapi semua data (Nama, Nomor WhatsApp, dan Tipe Rumah).");
         return;
       }
 
-      // --- KONFIGURASI NOMOR TUJUAN ---
-      // Ganti nomor ini dengan nomor WhatsApp tim sales Asanna Village (format: 628...)
+      // STEP 4: Susun URL WhatsApp
       const destinationNumber = "6281181150666";
-
       const message = `Halo, saya ${name}. Saya ingin melihat detail rumah Tipe ${houseType} dari Asanna Village.`;
       const encodedMessage = encodeURIComponent(message);
       const waUrl = `https://wa.me/${destinationNumber}?text=${encodedMessage}`;
 
-      const originalText = btn.innerHTML;
-      btn.innerHTML = "Membuka WhatsApp...";
-      btn.disabled = true;
+      // STEP 5: Sembunyikan form, tampilkan success (TanaRuma pattern)
+      if (formStep) formStep.classList.add('hidden');
+      if (formSuccess) formSuccess.classList.remove('hidden');
+      if (loadingSpinner) loadingSpinner.classList.remove('hidden');
 
-      // 1. Fire Pixel Event (sebelum redirect)
+      // STEP 6: Fire Pixel Event
       if (typeof fbq === 'function') {
         fbq('trackCustom', 'Lead AV');
       }
 
-      // 2. IMMEDIATELY redirect to WhatsApp (SYNCHRONOUS - trusted user gesture)
-      // MUST be called directly in click handler, NOT inside setTimeout!
-      // On mobile: OS intercepts wa.me deep link → opens WhatsApp app
-      // Browser page stays → modal code below still runs
-      window.location.href = waUrl;
+      // STEP 7: Redirect ke WhatsApp setelah 2 detik
+      // window.location.href + wa.me deep link = trusted navigation
+      setTimeout(() => {
+        window.location.href = waUrl;
 
-      // 3. Show Thank You Modal (visible when user returns to browser)
-      const thankYouModal = document.getElementById('thankYouModal');
-      const thankYouContent = document.getElementById('thankYouContent');
-      const waFallbackBtn = document.getElementById('waFallbackBtn');
-
-      if (thankYouModal && thankYouContent) {
-        // Set fallback button link
-        if (waFallbackBtn) waFallbackBtn.href = waUrl;
-
-        thankYouModal.classList.remove('hidden');
+        // STEP 8: Reset form setelah 2 detik (kalau user balik ke browser)
         setTimeout(() => {
-          thankYouModal.classList.remove('opacity-0');
-          thankYouContent.classList.remove('scale-95');
-          thankYouContent.classList.add('scale-100');
-        }, 10);
-
-        // Auto-close modal after 5 seconds
-        setTimeout(() => {
-          thankYouModal.classList.add('opacity-0');
-          thankYouContent.classList.remove('scale-100');
-          thankYouContent.classList.add('scale-95');
-          setTimeout(() => {
-            thankYouModal.classList.add('hidden');
-            form.reset();
-            btn.innerHTML = originalText;
-            btn.disabled = false;
-          }, 300);
-        }, 5000);
-      }
+          form.reset();
+          if (formStep) formStep.classList.remove('hidden');
+          if (formSuccess) formSuccess.classList.add('hidden');
+          if (loadingSpinner) loadingSpinner.classList.add('hidden');
+          // Reset dropdown text
+          const selectedText = document.getElementById('selectedOptionText');
+          if (selectedText) {
+            selectedText.textContent = 'Pilih Tipe Rumah';
+            selectedText.classList.add('text-gray-400');
+            selectedText.classList.remove('text-gray-900', 'dark:text-white');
+          }
+        }, 2000);
+      }, 2000);
     });
   }
 
