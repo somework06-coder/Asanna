@@ -324,13 +324,21 @@ document.addEventListener("DOMContentLoaded", () => {
         fbq('trackCustom', 'Lead AV');
       }
 
-      // 2. Show Thank You Modal
+      // 2. IMMEDIATELY redirect to WhatsApp (SYNCHRONOUS - trusted user gesture)
+      // MUST be called directly in click handler, NOT inside setTimeout!
+      // On mobile: OS intercepts wa.me deep link → opens WhatsApp app
+      // Browser page stays → modal code below still runs
+      window.location.href = waUrl;
+
+      // 3. Show Thank You Modal (visible when user returns to browser)
       const thankYouModal = document.getElementById('thankYouModal');
       const thankYouContent = document.getElementById('thankYouContent');
-      const progressBar = document.getElementById('progressBar');
-      const countdownSpan = document.getElementById('countdown');
+      const waFallbackBtn = document.getElementById('waFallbackBtn');
 
       if (thankYouModal && thankYouContent) {
+        // Set fallback button link
+        if (waFallbackBtn) waFallbackBtn.href = waUrl;
+
         thankYouModal.classList.remove('hidden');
         setTimeout(() => {
           thankYouModal.classList.remove('opacity-0');
@@ -338,30 +346,18 @@ document.addEventListener("DOMContentLoaded", () => {
           thankYouContent.classList.add('scale-100');
         }, 10);
 
-        // Progress bar animation (cosmetic)
-        let timeElapsed = 0;
-        const totalTime = 2000;
-        const intervalTime = 50;
-
-        const progressTimer = setInterval(() => {
-          timeElapsed += intervalTime;
-          const progress = (timeElapsed / totalTime) * 100;
-          progressBar.style.width = `${Math.min(progress, 100)}%`;
-
-          if (timeElapsed >= totalTime) {
-            clearInterval(progressTimer);
-          }
-        }, intervalTime);
-
-        // 3. Redirect ke WhatsApp setelah 2 detik (sama seperti TanaRuma)
-        // window.location.href = navigasi halaman biasa, TIDAK diblokir mobile browser
+        // Auto-close modal after 5 seconds
         setTimeout(() => {
-          window.location.href = waUrl;
-        }, 2000);
-
-      } else {
-        // Fallback: langsung redirect tanpa modal
-        window.location.href = waUrl;
+          thankYouModal.classList.add('opacity-0');
+          thankYouContent.classList.remove('scale-100');
+          thankYouContent.classList.add('scale-95');
+          setTimeout(() => {
+            thankYouModal.classList.add('hidden');
+            form.reset();
+            btn.innerHTML = originalText;
+            btn.disabled = false;
+          }, 300);
+        }, 5000);
       }
     });
   }
